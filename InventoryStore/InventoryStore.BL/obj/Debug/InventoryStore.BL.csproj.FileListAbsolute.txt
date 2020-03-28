@@ -1,0 +1,6 @@
+C:\bsource\InventoryStoreApp\InventoryStore\InventoryStore.BL\bin\Debug\InventoryStore.BL.dll
+C:\bsource\InventoryStoreApp\InventoryStore\InventoryStore.BL\bin\Debug\InventoryStore.BL.pdb
+C:\bsource\InventoryStoreApp\InventoryStore\InventoryStore.BL\obj\Debug\InventoryStore.BL.csprojAssemblyReference.cache
+C:\bsource\InventoryStoreApp\InventoryStore\InventoryStore.BL\obj\Debug\InventoryStore.BL.csproj.CoreCompileInputs.cache
+C:\bsource\InventoryStoreApp\InventoryStore\InventoryStore.BL\obj\Debug\InventoryStore.BL.dll
+C:\bsource\InventoryStoreApp\InventoryStore\InventoryStore.BL\obj\Debug\InventoryStore.BL.pdb
