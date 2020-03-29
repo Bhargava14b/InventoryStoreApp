@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventoryStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_Brands">
+    <Key>
+      <PropertyRef Name="Brand_Id" />
+    </Key>
+    <Property Name="Brand_Id" Type="Int32" Nullable="false" />
+    <Property Name="Brand_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Brand_Status" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Categories">
+    <Key>
+      <PropertyRef Name="Category_Id" />
+    </Key>
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Category_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category_Status" Type="Int32" />
+    <NavigationProperty Name="tbl_Products" Relationship="Self.FK_tbl_Products_tbl_Categories" FromRole="tbl_Categories" ToRole="tbl_Products" />
+  </EntityType>
+  <EntityType Name="tbl_Groups">
+    <Key>
+      <PropertyRef Name="Group_Id" />
+    </Key>
+    <Property Name="Group_Id" Type="Int32" Nullable="false" />
+    <Property Name="Group_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Menu_Access" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Orders">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="Int32" Nullable="false" />
+    <Property Name="Product_Id" Type="Int32" />
+    <Property Name="Items_Count" Type="Int32" />
+    <Property Name="Product_Cost" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Bill_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Gross_Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Service_Charge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Vat_Charge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Paid_Status" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <NavigationProperty Name="tbl_Products" Relationship="Self.FK_tbl_Orders_tbl_Products" FromRole="tbl_Orders" ToRole="tbl_Products" />
+    <NavigationProperty Name="tbl_Users" Relationship="Self.FK_tbl_Orders_tbl_Users" FromRole="tbl_Orders" ToRole="tbl_Users" />
+  </EntityType>
+  <EntityType Name="tbl_Products">
+    <Key>
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Product_ID" Type="Int32" Nullable="false" />
+    <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Supplier_Id" Type="Int32" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Brand_Id" Type="Int32" Nullable="false" />
+    <Property Name="Store_Id" Type="Int32" Nullable="false" />
+    <Property Name="Product_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Product_Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="Availability" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_Categories" Relationship="Self.FK_tbl_Products_tbl_Categories" FromRole="tbl_Products" ToRole="tbl_Categories" />
+    <NavigationProperty Name="tbl_Orders" Relationship="Self.FK_tbl_Orders_tbl_Products" FromRole="tbl_Products" ToRole="tbl_Orders" />
+    <NavigationProperty Name="tbl_Stores" Relationship="Self.FK_tbl_Products_tbl_Stores" FromRole="tbl_Products" ToRole="tbl_Stores" />
+  </EntityType>
+  <EntityType Name="tbl_Stores">
+    <Key>
+      <PropertyRef Name="Store_Id" />
+    </Key>
+    <Property Name="Store_Id" Type="Int32" Nullable="false" />
+    <Property Name="Store_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Store_Status" Type="Int32" />
+    <NavigationProperty Name="tbl_Products" Relationship="Self.FK_tbl_Products_tbl_Stores" FromRole="tbl_Stores" ToRole="tbl_Products" />
+  </EntityType>
+  <EntityType Name="tbl_Supplier">
+    <Key>
+      <PropertyRef Name="Supplier_Id" />
+    </Key>
+    <Property Name="Supplier_Id" Type="Int32" Nullable="false" />
+    <Property Name="Supplier_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Service_Charge_Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Vat_Charge_Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_Users">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Group_Id" Type="Int32" />
+    <NavigationProperty Name="tbl_Orders" Relationship="Self.FK_tbl_Orders_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Orders" />
+  </EntityType>
+  <Association Name="FK_tbl_Products_tbl_Categories">
+    <End Role="tbl_Categories" Type="Self.tbl_Categories" Multiplicity="1" />
+    <End Role="tbl_Products" Type="Self.tbl_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Categories">
+        <PropertyRef Name="Category_Id" />
+      </Principal>
+      <Dependent Role="tbl_Products">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Orders_tbl_Products">
+    <End Role="tbl_Products" Type="Self.tbl_Products" Multiplicity="0..1" />
+    <End Role="tbl_Orders" Type="Self.tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Products">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="tbl_Orders">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Orders_tbl_Users">
+    <End Role="tbl_Users" Type="Self.tbl_Users" Multiplicity="0..1" />
+    <End Role="tbl_Orders" Type="Self.tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Users">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="tbl_Orders">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Products_tbl_Stores">
+    <End Role="tbl_Stores" Type="Self.tbl_Stores" Multiplicity="1" />
+    <End Role="tbl_Products" Type="Self.tbl_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Stores">
+        <PropertyRef Name="Store_Id" />
+      </Principal>
+      <Dependent Role="tbl_Products">
+        <PropertyRef Name="Store_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InventoryStoreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_Brands" EntityType="Self.tbl_Brands" />
+    <EntitySet Name="tbl_Categories" EntityType="Self.tbl_Categories" />
+    <EntitySet Name="tbl_Groups" EntityType="Self.tbl_Groups" />
+    <EntitySet Name="tbl_Orders" EntityType="Self.tbl_Orders" />
+    <EntitySet Name="tbl_Products" EntityType="Self.tbl_Products" />
+    <EntitySet Name="tbl_Stores" EntityType="Self.tbl_Stores" />
+    <EntitySet Name="tbl_Supplier" EntityType="Self.tbl_Supplier" />
+    <EntitySet Name="tbl_Users" EntityType="Self.tbl_Users" />
+    <AssociationSet Name="FK_tbl_Products_tbl_Categories" Association="Self.FK_tbl_Products_tbl_Categories">
+      <End Role="tbl_Categories" EntitySet="tbl_Categories" />
+      <End Role="tbl_Products" EntitySet="tbl_Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Orders_tbl_Products" Association="Self.FK_tbl_Orders_tbl_Products">
+      <End Role="tbl_Products" EntitySet="tbl_Products" />
+      <End Role="tbl_Orders" EntitySet="tbl_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Orders_tbl_Users" Association="Self.FK_tbl_Orders_tbl_Users">
+      <End Role="tbl_Users" EntitySet="tbl_Users" />
+      <End Role="tbl_Orders" EntitySet="tbl_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Products_tbl_Stores" Association="Self.FK_tbl_Products_tbl_Stores">
+      <End Role="tbl_Stores" EntitySet="tbl_Stores" />
+      <End Role="tbl_Products" EntitySet="tbl_Products" />
+    </AssociationSet>
+    <FunctionImport Name="delete_Store">
+      <Parameter Name="store_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Search_Store" ReturnType="Collection(InventoryStoreModel.Search_Store_Result)">
+      <Parameter Name="store_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Update_Store">
+      <Parameter Name="Store_Name" Mode="In" Type="String" />
+      <Parameter Name="store_status" Mode="In" Type="Int32" />
+      <Parameter Name="store_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ViewAll_Stores" ReturnType="Collection(InventoryStoreModel.ViewAll_Stores_Result)" />
+  </EntityContainer>
+  <ComplexType Name="Search_Store_Result">
+    <Property Type="Int32" Name="Store_Id" Nullable="false" />
+    <Property Type="String" Name="Store_Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Store_Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ViewAll_Stores_Result">
+    <Property Type="Int32" Name="Store_Id" Nullable="false" />
+    <Property Type="String" Name="Store_Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Store_Status" Nullable="true" />
+  </ComplexType>
+</Schema>

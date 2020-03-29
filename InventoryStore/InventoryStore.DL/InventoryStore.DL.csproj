@@ -50,62 +50,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="InventoryStoreDB.Context.cs">
+    <Compile Include="IInventoryStore.cs" />
+    <Compile Include="InventoryBL.cs" />
+    <Compile Include="InventoryDL.cs" />
+    <Compile Include="InventoryStoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InventoryStoreDB.Context.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="InventoryStoreDB.cs">
+    <Compile Include="InventoryStoreModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="InventoryStoreDB.Designer.cs">
+    <Compile Include="InventoryStoreModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InventoryStoreDB.edmx</DependentUpon>
+      <DependentUpon>InventoryStoreModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search_Store_Result.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Brands.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Categories.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Groups.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Orders.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Products.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Stores.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Supplier.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Users.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewAll_Stores_Result.cs">
-      <DependentUpon>InventoryStoreDB.tt</DependentUpon>
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="InventoryStoreDB.edmx">
+    <EntityDeploy Include="InventoryStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InventoryStoreDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>InventoryStoreModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="InventoryStoreDB.edmx.diagram">
-      <DependentUpon>InventoryStoreDB.edmx</DependentUpon>
+    <None Include="InventoryStoreModel.edmx.diagram">
+      <DependentUpon>InventoryStoreModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -113,15 +115,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="InventoryStoreDB.Context.tt">
+    <Content Include="InventoryStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InventoryStoreDB.edmx</DependentUpon>
-      <LastGenOutput>InventoryStoreDB.Context.cs</LastGenOutput>
+      <DependentUpon>InventoryStoreModel.edmx</DependentUpon>
+      <LastGenOutput>InventoryStoreModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="InventoryStoreDB.tt">
+    <Content Include="InventoryStoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InventoryStoreDB.edmx</DependentUpon>
-      <LastGenOutput>InventoryStoreDB.cs</LastGenOutput>
+      <DependentUpon>InventoryStoreModel.edmx</DependentUpon>
+      <LastGenOutput>InventoryStoreModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

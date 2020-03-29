@@ -11,7 +11,7 @@ namespace InventoryStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txt1.Text = "";
         }
     }
 }

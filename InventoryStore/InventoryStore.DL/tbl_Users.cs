@@ -29,7 +29,8 @@ namespace InventoryStore.DL
         public string Password { get; set; }
         public string Email_Id { get; set; }
         public Nullable<int> Group_Id { get; set; }
-    
+        public bool IsActive { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Orders> tbl_Orders { get; set; }
     }

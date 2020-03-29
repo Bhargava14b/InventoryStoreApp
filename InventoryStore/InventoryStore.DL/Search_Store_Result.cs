@@ -15,6 +15,6 @@ namespace InventoryStore.DL
     {
         public int Store_Id { get; set; }
         public string Store_Name { get; set; }
-        public Nullable<int> Store_Status { get; set; }
+        public Nullable<bool> Store_Status { get; set; }
     }
 }

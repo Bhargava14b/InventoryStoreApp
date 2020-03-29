@@ -22,7 +22,7 @@ namespace InventoryStore.DL
     
         public int Store_Id { get; set; }
         public string Store_Name { get; set; }
-        public Nullable<int> Store_Status { get; set; }
+        public Nullable<bool> Store_Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Products> tbl_Products { get; set; }

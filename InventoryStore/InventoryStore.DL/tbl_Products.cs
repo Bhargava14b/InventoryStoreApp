@@ -33,9 +33,11 @@ namespace InventoryStore.DL
         public Nullable<System.DateTime> ExpiryDate { get; set; }
         public bool Availability { get; set; }
     
+        public virtual tbl_Brands tbl_Brands { get; set; }
         public virtual tbl_Categories tbl_Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Orders> tbl_Orders { get; set; }
         public virtual tbl_Stores tbl_Stores { get; set; }
+        public virtual tbl_Supplier tbl_Supplier { get; set; }
     }
 }

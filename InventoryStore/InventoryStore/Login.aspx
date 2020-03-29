@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="InventoryStore.Login" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
-
 </head>
 <body class="bg-gradient-primary">
     <div class="container">
@@ -28,12 +27,12 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
-                                    <form class="user">
+                                    <form class="user" runat="server" id="loginForm">
                                         <div class="form-group">
-                                            <input type="email" required class="form-control form-control-user " id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <asp:TextBox CssClass="form-control form-control-user" TextMode="Email" runat="server" ID="txtEmail" required placeholder="Enter Email Address..."></asp:TextBox>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" required class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <asp:TextBox runat="server" CssClass="form-control form-control-user" TextMode="Password" ID="txtPassword" required placeholder="Enter Password..."></asp:TextBox>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -41,9 +40,7 @@
                                                 <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
+                                        <asp:Button runat="server" Text="Login" ID="btnLogin" CssClass="btn btn-primary btn-user btn-block" OnClick="btnLogin_Click" />
                                     </form>
                                     <hr>
                                     <%--<div class="text-center">

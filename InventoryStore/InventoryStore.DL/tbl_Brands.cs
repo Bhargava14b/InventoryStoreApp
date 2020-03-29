@@ -14,8 +14,17 @@ namespace InventoryStore.DL
     
     public partial class tbl_Brands
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_Brands()
+        {
+            this.tbl_Products = new HashSet<tbl_Products>();
+        }
+    
         public int Brand_Id { get; set; }
         public string Brand_Name { get; set; }
-        public int Brand_Status { get; set; }
+        public bool Brand_Status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Products> tbl_Products { get; set; }
     }
 }
