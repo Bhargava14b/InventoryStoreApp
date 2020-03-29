@@ -75,5 +75,155 @@ namespace InventoryStore.DL
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewAll_Stores_Result>("ViewAll_Stores");
         }
+    
+        public virtual ObjectResult<SP_SaveBrand_Result> SP_SaveBrand(Nullable<int> id, string name, Nullable<bool> status)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SaveBrand_Result>("SP_SaveBrand", idParameter, nameParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<SP_SaveCategory_Result> SP_SaveCategory(Nullable<int> id, string name, Nullable<bool> status)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SaveCategory_Result>("SP_SaveCategory", idParameter, nameParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<SP_SaveGroup_Result> SP_SaveGroup(Nullable<int> id, string name, string menus)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var menusParameter = menus != null ?
+                new ObjectParameter("Menus", menus) :
+                new ObjectParameter("Menus", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SaveGroup_Result>("SP_SaveGroup", idParameter, nameParameter, menusParameter);
+        }
+    
+        public virtual ObjectResult<SP_SaveStore_Result> SP_SaveStore(Nullable<int> id, string name, Nullable<bool> status)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SaveStore_Result>("SP_SaveStore", idParameter, nameParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<SP_SaveSupplier_Result> SP_SaveSupplier(Nullable<int> id, string name, string serviceCharge, string vat, string address, string phone, string country, string message, string currency)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var serviceChargeParameter = serviceCharge != null ?
+                new ObjectParameter("ServiceCharge", serviceCharge) :
+                new ObjectParameter("ServiceCharge", typeof(string));
+    
+            var vatParameter = vat != null ?
+                new ObjectParameter("Vat", vat) :
+                new ObjectParameter("Vat", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("Phone", phone) :
+                new ObjectParameter("Phone", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var currencyParameter = currency != null ?
+                new ObjectParameter("Currency", currency) :
+                new ObjectParameter("Currency", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SaveSupplier_Result>("SP_SaveSupplier", idParameter, nameParameter, serviceChargeParameter, vatParameter, addressParameter, phoneParameter, countryParameter, messageParameter, currencyParameter);
+        }
+    
+        public virtual ObjectResult<SP_SaveUser_Result> SP_SaveUser(Nullable<int> id, string firstName, string lastName, string gender, string phone, string password, string emailId, Nullable<int> groupId, Nullable<bool> isActive)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var genderParameter = gender != null ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("Phone", phone) :
+                new ObjectParameter("Phone", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var emailIdParameter = emailId != null ?
+                new ObjectParameter("EmailId", emailId) :
+                new ObjectParameter("EmailId", typeof(string));
+    
+            var groupIdParameter = groupId.HasValue ?
+                new ObjectParameter("GroupId", groupId) :
+                new ObjectParameter("GroupId", typeof(int));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SaveUser_Result>("SP_SaveUser", idParameter, firstNameParameter, lastNameParameter, genderParameter, phoneParameter, passwordParameter, emailIdParameter, groupIdParameter, isActiveParameter);
+        }
     }
 }

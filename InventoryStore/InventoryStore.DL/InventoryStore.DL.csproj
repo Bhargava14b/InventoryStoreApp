@@ -72,6 +72,24 @@
     <Compile Include="Search_Store_Result.cs">
       <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SaveBrand_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SaveCategory_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SaveGroup_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SaveStore_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SaveSupplier_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SaveUser_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_Brands.cs">
       <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>

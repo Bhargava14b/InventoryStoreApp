@@ -60,24 +60,7 @@ namespace InventoryStore.DL
         {
             try
             {
-                if (brand.Brand_Id > 0)
-                {
-                    var exBrand = dbContext.tbl_Brands.FirstOrDefault(x => x.Brand_Id == brand.Brand_Id);
-                    if (exBrand != null)
-                    {
-                        exBrand.Brand_Name = brand.Brand_Name;
-                        exBrand.Brand_Status = brand.Brand_Status;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    dbContext.tbl_Brands.Add(new tbl_Brands() { Brand_Name = brand.Brand_Name, Brand_Status = brand.Brand_Status });
-                }
-                dbContext.SaveChanges();
+                var result = dbContext.SP_SaveBrand(brand.Brand_Id, brand.Brand_Name, brand.Brand_Status);
                 return true;
             }
             catch (Exception ex)

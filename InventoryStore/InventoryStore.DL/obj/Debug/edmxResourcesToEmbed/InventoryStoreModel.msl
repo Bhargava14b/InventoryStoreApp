@@ -96,6 +96,7 @@
     <EntitySetMapping Name="tbl_Users">
       <EntityTypeMapping TypeName="InventoryStoreModel.tbl_Users">
         <MappingFragment StoreEntitySet="tbl_Users">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="User_Id" ColumnName="User_Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -125,6 +126,54 @@
           <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
           <ScalarProperty Name="Store_Name" ColumnName="Store_Name" />
           <ScalarProperty Name="Store_Status" ColumnName="Store_Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveBrand" FunctionName="InventoryStoreModel.Store.SP_SaveBrand">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveBrand_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveCategory" FunctionName="InventoryStoreModel.Store.SP_SaveCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveCategory_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveGroup" FunctionName="InventoryStoreModel.Store.SP_SaveGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveGroup_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveStore" FunctionName="InventoryStoreModel.Store.SP_SaveStore">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveStore_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveSupplier" FunctionName="InventoryStoreModel.Store.SP_SaveSupplier">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveSupplier_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveUser" FunctionName="InventoryStoreModel.Store.SP_SaveUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveUser_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

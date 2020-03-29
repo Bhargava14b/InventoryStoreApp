@@ -110,18 +110,17 @@
                     },
                     success: function (result) {
                         $("#dataTable tbody").html("");
-                        if (result.length > 0) {
-                            for (var i = 0; i < result.length; i++) {
-                                $("#dataTable tbody").append('<tr><td>' + result[i].Brand_Name + '</td><td>' + result[i].Brand_Status + '</td>' +
-                                    '<td><button class="btn btn-primary btn-Show-Save" btn-save-id="' + result[i].Brand_Id + '" btn-save-model="' + JSON.stringify(result[i]) + '">Edit</button>' +
-                                    '<button class= "btn btn-danger btn-Show-delete" btn-delete-id="' + result[i].Brand_Id + '"> Delete</button ></td></tr>');
+                        if (result && result.d && result.d.length > 0) {
+                            for (var i = 0; i < result.d.length; i++) {
+                                $("#dataTable tbody").append('<tr><td>' + result.d[i].Brand_Name + '</td><td>' + (result.d[i].Brand_Status ? 'Active' : 'Inactive') + '</td>' +
+                                    '<td><button class="btn btn-primary btn-Show-Save" btn-save-id="' + result.d[i].Brand_Id + '" btn-save-model="' + JSON.stringify(result.d[i]) + '">Edit</button>&nbsp' +
+                                    '<button class= "btn btn-danger btn-Show-delete" btn-delete-id="' + result.d[i].Brand_Id + '"> Delete</button ></td></tr>');
                             }
-                            $('#dataTable').DataTable();
                         }
                         else {
                             $("#dataTable tbody").append('<tr><td colspan="3">No records found!</td><td>');
                         }
-                        
+                        $('#dataTable').DataTable();
                         //alert("We returned: " + JSON.stringify(result));
                     }
                 });
@@ -166,7 +165,7 @@
                         alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
                     },
                     success: function (result) {
-                        if (result && result == true) {
+                        if (result && result.d && result.d == true) {
                             loadBrands();
                             $("#addBrandModal").modal('hide');
                         }
@@ -191,7 +190,7 @@
                         alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
                     },
                     success: function (result) {
-                        if (result && result == true) {
+                        if (result && result.d && result.d == true) {
                             loadBrands();
                             $("#deleteBrandModal").modal('hide');
                         }

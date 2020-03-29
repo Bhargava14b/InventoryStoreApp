@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InventoryStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InventoryStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_Brands">
           <Key>
             <PropertyRef Name="Brand_Id" />
           </Key>
-          <Property Name="Brand_Id" Type="int" Nullable="false" />
+          <Property Name="Brand_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Brand_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Brand_Status" Type="bit" Nullable="false" />
         </EntityType>
@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="Category_Id" />
           </Key>
-          <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Category_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Category_Name" Type="varchar" MaxLength="50" />
           <Property Name="Category_Status" Type="bit" />
         </EntityType>
@@ -25,7 +25,7 @@
           <Key>
             <PropertyRef Name="Group_Id" />
           </Key>
-          <Property Name="Group_Id" Type="int" Nullable="false" />
+          <Property Name="Group_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Group_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Menu_Access" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="Order_Id" />
           </Key>
-          <Property Name="Order_Id" Type="int" Nullable="false" />
+          <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_Id" Type="int" />
           <Property Name="Items_Count" Type="int" />
           <Property Name="Product_Cost" Type="numeric" Precision="18" Scale="0" />
@@ -55,7 +55,7 @@
           <Key>
             <PropertyRef Name="Product_ID" />
           </Key>
-          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SKU" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Supplier_Id" Type="int" Nullable="false" />
@@ -72,7 +72,7 @@
           <Key>
             <PropertyRef Name="Store_Id" />
           </Key>
-          <Property Name="Store_Id" Type="int" Nullable="false" />
+          <Property Name="Store_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Store_Name" Type="varchar" MaxLength="50" />
           <Property Name="Store_Status" Type="bit" />
         </EntityType>
@@ -80,7 +80,7 @@
           <Key>
             <PropertyRef Name="Supplier_Id" />
           </Key>
-          <Property Name="Supplier_Id" Type="int" Nullable="false" />
+          <Property Name="Supplier_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Supplier_Name" Type="varchar" MaxLength="50" />
           <Property Name="Service_Charge_Value" Type="varchar" MaxLength="50" />
           <Property Name="Vat_Charge_Value" Type="varchar" MaxLength="50" />
@@ -94,7 +94,7 @@
           <Key>
             <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Gender" Type="char" MaxLength="1" />
@@ -103,6 +103,7 @@
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="Email_Id" Type="varchar" MaxLength="50" />
           <Property Name="Group_Id" Type="int" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="FK_tbl_Orders_tbl_Products">
           <End Role="tbl_Products" Type="Self.tbl_Products" Multiplicity="0..1" />
@@ -182,6 +183,48 @@
         <Function Name="Search_Store" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="store_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_SaveBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_SaveCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_SaveGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Menus" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SaveStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_SaveSupplier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="ServiceCharge" Type="varchar" Mode="In" />
+          <Parameter Name="Vat" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+          <Parameter Name="Message" Type="varchar" Mode="In" />
+          <Parameter Name="Currency" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SaveUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
         <Function Name="Update_Store" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Store_Name" Type="varchar" Mode="In" />
           <Parameter Name="store_status" Type="int" Mode="In" />
@@ -222,8 +265,7 @@
             <End Role="tbl_Products" EntitySet="tbl_Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InventoryStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -337,6 +379,7 @@
           <Property Name="Email_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Group_Id" Type="Int32" />
           <NavigationProperty Name="tbl_Orders" Relationship="Self.FK_tbl_Orders_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Orders" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <Association Name="FK_tbl_Products_tbl_Brand_Id">
           <End Role="tbl_Brands" Type="Self.tbl_Brands" Multiplicity="1" />
@@ -444,10 +487,10 @@
             <End Role="tbl_Products" EntitySet="tbl_Products" />
           </AssociationSet>
           <FunctionImport Name="delete_Store">
-            <Parameter Name="store_Id" Mode="In" Type="Int32" />
+          <Parameter Name="store_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Search_Store" ReturnType="Collection(InventoryStoreModel.Search_Store_Result)">
-            <Parameter Name="store_Id" Mode="In" Type="Int32" />
+          <Parameter Name="store_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Update_Store">
             <Parameter Name="Store_Name" Mode="In" Type="String" />
@@ -455,6 +498,48 @@
             <Parameter Name="store_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ViewAll_Stores" ReturnType="Collection(InventoryStoreModel.ViewAll_Stores_Result)" />
+          <FunctionImport Name="SP_SaveBrand" ReturnType="Collection(InventoryStoreModel.SP_SaveBrand_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SaveCategory" ReturnType="Collection(InventoryStoreModel.SP_SaveCategory_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SaveGroup" ReturnType="Collection(InventoryStoreModel.SP_SaveGroup_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Menus" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SaveStore" ReturnType="Collection(InventoryStoreModel.SP_SaveStore_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SaveSupplier" ReturnType="Collection(InventoryStoreModel.SP_SaveSupplier_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="ServiceCharge" Mode="In" Type="String" />
+            <Parameter Name="Vat" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="Currency" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SaveUser" ReturnType="Collection(InventoryStoreModel.SP_SaveUser_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Search_Store_Result">
           <Property Type="Int32" Name="Store_Id" Nullable="false" />
@@ -465,6 +550,30 @@
           <Property Type="Int32" Name="Store_Id" Nullable="false" />
           <Property Type="String" Name="Store_Name" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="Store_Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SaveBrand_Result">
+          <Property Type="Int32" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Msg" Nullable="false" MaxLength="26" />
+        </ComplexType>
+        <ComplexType Name="SP_SaveCategory_Result">
+          <Property Type="Int32" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Msg" Nullable="false" MaxLength="29" />
+        </ComplexType>
+        <ComplexType Name="SP_SaveGroup_Result">
+          <Property Type="Int32" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Msg" Nullable="false" MaxLength="26" />
+        </ComplexType>
+        <ComplexType Name="SP_SaveStore_Result">
+          <Property Type="Int32" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Msg" Nullable="false" MaxLength="26" />
+        </ComplexType>
+        <ComplexType Name="SP_SaveSupplier_Result">
+          <Property Type="Int32" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Msg" Nullable="false" MaxLength="29" />
+        </ComplexType>
+        <ComplexType Name="SP_SaveUser_Result">
+          <Property Type="Int32" Name="Result" Nullable="false" />
+          <Property Type="String" Name="Msg" Nullable="false" MaxLength="24" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -567,6 +676,7 @@
           <EntitySetMapping Name="tbl_Users">
             <EntityTypeMapping TypeName="InventoryStoreModel.tbl_Users">
               <MappingFragment StoreEntitySet="tbl_Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -596,6 +706,54 @@
                 <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
                 <ScalarProperty Name="Store_Name" ColumnName="Store_Name" />
                 <ScalarProperty Name="Store_Status" ColumnName="Store_Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SaveBrand" FunctionName="InventoryStoreModel.Store.SP_SaveBrand">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveBrand_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SaveCategory" FunctionName="InventoryStoreModel.Store.SP_SaveCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveCategory_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SaveGroup" FunctionName="InventoryStoreModel.Store.SP_SaveGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveGroup_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SaveStore" FunctionName="InventoryStoreModel.Store.SP_SaveStore">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveStore_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SaveSupplier" FunctionName="InventoryStoreModel.Store.SP_SaveSupplier">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveSupplier_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SaveUser" FunctionName="InventoryStoreModel.Store.SP_SaveUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveUser_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

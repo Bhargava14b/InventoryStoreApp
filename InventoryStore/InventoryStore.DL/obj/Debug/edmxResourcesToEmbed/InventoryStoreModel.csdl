@@ -110,6 +110,7 @@
     <Property Name="Email_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Group_Id" Type="Int32" />
     <NavigationProperty Name="tbl_Orders" Relationship="Self.FK_tbl_Orders_tbl_Users" FromRole="tbl_Users" ToRole="tbl_Orders" />
+    <Property Name="IsActive" Type="Boolean" />
   </EntityType>
   <Association Name="FK_tbl_Products_tbl_Brand_Id">
     <End Role="tbl_Brands" Type="Self.tbl_Brands" Multiplicity="1" />
@@ -228,6 +229,48 @@
       <Parameter Name="store_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="ViewAll_Stores" ReturnType="Collection(InventoryStoreModel.ViewAll_Stores_Result)" />
+    <FunctionImport Name="SP_SaveBrand" ReturnType="Collection(InventoryStoreModel.SP_SaveBrand_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveCategory" ReturnType="Collection(InventoryStoreModel.SP_SaveCategory_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveGroup" ReturnType="Collection(InventoryStoreModel.SP_SaveGroup_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Menus" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveStore" ReturnType="Collection(InventoryStoreModel.SP_SaveStore_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveSupplier" ReturnType="Collection(InventoryStoreModel.SP_SaveSupplier_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ServiceCharge" Mode="In" Type="String" />
+      <Parameter Name="Vat" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="Message" Mode="In" Type="String" />
+      <Parameter Name="Currency" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveUser" ReturnType="Collection(InventoryStoreModel.SP_SaveUser_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Gender" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="GroupId" Mode="In" Type="Int32" />
+      <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="Search_Store_Result">
     <Property Type="Int32" Name="Store_Id" Nullable="false" />
@@ -238,5 +281,29 @@
     <Property Type="Int32" Name="Store_Id" Nullable="false" />
     <Property Type="String" Name="Store_Name" Nullable="true" MaxLength="50" />
     <Property Type="Boolean" Name="Store_Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveBrand_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="26" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveCategory_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="29" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveGroup_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="26" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveStore_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="26" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveSupplier_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="29" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveUser_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="24" />
   </ComplexType>
 </Schema>
