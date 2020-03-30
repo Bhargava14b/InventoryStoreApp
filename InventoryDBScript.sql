@@ -539,3 +539,144 @@ create procedure [dbo].[ViewAll_Stores]
 as
 select *  from  [dbo].[tbl_Stores] 
 GO
+
+
+USE [InventoryStore]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_SaveProduct]    Script Date: 30-03-2020 20:20:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[SP_SaveProduct]
+(
+@Id INT,
+@ProductName VARCHAR(50),
+@SKU VARCHAR(50),
+@SupplierId INT,
+@CategoryId INT,
+@BrandId INT,
+@StoreId INT,
+@Description VARCHAR(50),
+@Quantity INT,
+@Price numeric(18,0),
+@ExpiryDate DATETIME,
+@Availability BIT
+)
+AS
+BEGIN
+
+IF(@Id=0)
+BEGIN
+
+	IF EXISTS(SELECT 1 FROM tbl_Products WHERE Product_Name=@ProductName)
+	BEGIN
+		SELECT 0 AS Result,'Product Name already exists!' AS Msg
+	END
+	ELSE
+	BEGIN
+		INSERT INTO tbl_Products(Product_Name,SKU,Supplier_Id,Category_Id,Brand_Id,Store_Id,Product_Description,Product_Quantity,Price,ExpiryDate,Availability)
+		VALUES(@ProductName,@SKU,@SupplierId,@CategoryId,@BrandId,@StoreId,@Description ,@Quantity ,@Price ,@ExpiryDate,@Availability)
+		SELECT 1 AS Result,'Product saved Successfully!' AS Msg
+	END
+
+END
+ELSE
+BEGIN
+
+	IF EXISTS(SELECT 1 FROM tbl_Products WHERE Product_Name=@ProductName AND Product_ID<>@Id)
+	BEGIN
+		SELECT 0 AS Result,'Product Name already exists!' AS Msg
+	END
+	ELSE
+	BEGIN
+		UPDATE tbl_Products SET 
+		Product_Name=@ProductName,
+		SKU=@SKU,
+		Supplier_Id=@SupplierId,
+		Category_Id=@CategoryId,
+		Brand_Id=@BrandId,
+		Store_Id=@StoreId,
+		Product_Description=@Description,
+		Product_Quantity=@Quantity,
+		Price=@Price,
+		ExpiryDate=@ExpiryDate,
+		[Availability]=@Availability
+
+		WHERE Product_ID=@Id
+		SELECT 1 AS Result,'Product saved Successfully!' AS Msg
+	END
+END
+
+END
+USE [InventoryStore]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_SaveOrder]    Script Date: 30-03-2020 20:22:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[SP_SaveOrder]
+(
+@Id INT,
+@ProductId INT,
+@ItemsCount INT,
+@Cost NUMERIC(18,0),
+@Amount NUMERIC(18,0),
+@BillNo VARCHAR(50),
+@CustomerName VARCHAR(50),
+@Customer_Address varchar(50),
+@Phone VARCHAR(50),
+@CreatedDate date,
+@GrossAmount NUMERIC(18,0),
+@SerivceCharge NUMERIC(18,0),
+@VatCharge numeric(18,0),
+@Discount NUMERIC(18,0),
+@NetAmount NUMERIC(18,0),
+@PaidStatus INT,
+@UserId INT
+)
+AS
+BEGIN
+
+INSERT INTO tbl_Orders(
+Order_Id,
+Product_Id,
+Items_Count,
+Product_Cost,
+Amount,
+Bill_No,
+Customer_Name,
+Customer_Address,
+Customer_Phone,
+CreatedDate,
+Gross_Amount,
+Service_Charge,
+Vat_Charge,
+Discount,
+NetAmount,
+Paid_Status,
+User_Id
+)
+VALUES(
+@Id ,
+@ProductId ,
+@ItemsCount ,
+@Cost ,
+@Amount ,
+@BillNo ,
+@CustomerName ,
+@Customer_Address ,
+@Phone ,
+@CreatedDate ,
+@GrossAmount ,
+@SerivceCharge ,
+@VatCharge ,
+@Discount ,
+@NetAmount ,
+@PaidStatus ,
+@UserId 
+)
+SELECT 1 AS Result,'Order submitted Successfully!' AS Msg
+		
+END
