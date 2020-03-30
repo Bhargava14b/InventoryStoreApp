@@ -60,15 +60,19 @@ namespace InventoryStore.DL
         {
             try
             {
-                var result = dbContext.SP_SaveBrand(brand.Brand_Id, brand.Brand_Name, brand.Brand_Status);
-                return true;
+                var result = dbContext.SP_SaveBrand(brand.Brand_Id, brand.Brand_Name, brand.Brand_Status).ToList();
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
         public bool DeleteBrand(int id)
         {
             try
@@ -91,7 +95,6 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
-
         public List<tbl_Categories> GetCategories()
         {
             try
@@ -121,9 +124,13 @@ namespace InventoryStore.DL
         {
             try
             {
-                dbContext.tbl_Categories.Add(category);
-                dbContext.SaveChanges();
-                return true;
+                var result = dbContext.SP_SaveCategory(category.Category_Id, category.Category_Name, category.Category_Status);
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -159,9 +166,13 @@ namespace InventoryStore.DL
         {
             try
             {
-                dbContext.tbl_Stores.Add(store);
-                dbContext.SaveChanges();
-                return true;
+                var result = dbContext.SP_SaveStore(store.Store_Id, store.Store_Name, store.Store_Status);
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -208,7 +219,6 @@ namespace InventoryStore.DL
         }
 
         #region Users
-
         public List<tbl_Users> GetUsers()
         {
             try
@@ -231,7 +241,6 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
-
         public bool SaveUser(tbl_Users user)
         {
             try
@@ -241,22 +250,37 @@ namespace InventoryStore.DL
                 {
                     user.Password = "Password@123";
                 }
-                dbContext.tbl_Users.Add(user);
-                dbContext.SaveChanges();
-                return true;
+                var result = dbContext.SP_SaveUser(user.User_Id, user.FirstName, user.LastName, (user.Gender.Length > 0 ? user.Gender[0].ToString() : ""),
+                    user.Phone, user.Password, user.Email_Id, user.Group_Id, user.IsActive).ToList();
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        public tbl_Users ValidateUserLogin(string userName, string password)
+        public dynamic ValidateUserLogin(string userName, string password)
         {
             tbl_Users user;
             try
             {
                 user = dbContext.tbl_Users.FirstOrDefault(x => x.User_Name == userName && x.Password == password);
+                if (user != null)
+                {
+                    var group = dbContext.tbl_Groups.FirstOrDefault(x => x.Group_Id == user.Group_Id);
+                    return new
+                    {
+                        UserName = user.User_Name,
+                        Email = user.Email_Id,
+                        MenuAccess = group.Menu_Access
+                    };
+                }
+                
                 return user;
             }
             catch (Exception ex)
@@ -264,7 +288,6 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
-
         #endregion
     }
 }

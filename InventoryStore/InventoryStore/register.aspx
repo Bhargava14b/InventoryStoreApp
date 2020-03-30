@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="InventoryStore.Register" %>
 
 <!DOCTYPE html>
 
@@ -25,27 +25,28 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" runat="server">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                                        <asp:TextBox runat="server" ID="txtFirstName" placeholder="First Name" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <%--<input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">--%>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                                        <asp:TextBox runat="server" ID="txtLastName" placeholder="Last Name" required CssClass="form-control form-control-user"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                                    <asp:TextBox runat="server" ID="txtEmail" placeholder="Email Address" required TextMode="Email" CssClass="form-control form-control-user"></asp:TextBox>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                        <asp:TextBox runat="server" CssClass="form-control form-control-user" TextMode="Password" ID="txtPassword" required placeholder="Password"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <asp:TextBox runat="server" CssClass="form-control form-control-user" TextMode="Password" ID="txtConfirmPassword" required placeholder="Confirm Password"></asp:TextBox>
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account
+                                <asp:Button runat="server" Text="Register Account" ID="btnRegiser" CssClass="btn btn-primary btn-user btn-block" OnClick="btnRegiser_Click" />
                                 </a>
                                 <hr>
                             </form>

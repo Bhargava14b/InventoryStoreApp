@@ -43,6 +43,6 @@ namespace InventoryStore.DL
 
         bool SaveUser(tbl_Users user);
 
-        tbl_Users ValidateUserLogin(string userName, string password);
+        dynamic ValidateUserLogin(string userName, string password);
     }
 }

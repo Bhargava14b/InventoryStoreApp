@@ -2099,6 +2099,9 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Stores.aspx.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

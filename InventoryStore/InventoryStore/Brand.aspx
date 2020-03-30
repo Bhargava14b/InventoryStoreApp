@@ -95,6 +95,28 @@
     </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
+
+        function openSaveModal(id, that) {
+            $("#btnSaveModal").attr('btn-save-id', id);
+            if (id > 0) {
+                $("#addModalLabel").text("Edit Brand");
+                var model = JSON.parse($(that).attr("btn-save-model"));
+                $("#txtName").val(model.Brand_Name);
+                $("#ddlStatus").val(model.Brand_Status ? "1" : "0");
+            }
+            else {
+                $("#addModalLabel").text("Add Brand");
+                $("#txtName").val("");
+                $("#ddlStatus").val("1");
+            }
+            $("#addBrandModal").modal('show');
+        }
+
+        function openDeleteConfirmation(id) {
+            $("#btnDeleteModal").attr('btn-save-id', id);
+            $("#deleteBrandModal").modal('show');
+        }
+
         $(document).ready(function () {
             loadBrands();
 
@@ -112,9 +134,9 @@
                         $("#dataTable tbody").html("");
                         if (result && result.d && result.d.length > 0) {
                             for (var i = 0; i < result.d.length; i++) {
-                                $("#dataTable tbody").append('<tr><td>' + result.d[i].Brand_Name + '</td><td>' + (result.d[i].Brand_Status ? 'Active' : 'Inactive') + '</td>' +
-                                    '<td><button class="btn btn-primary btn-Show-Save" btn-save-id="' + result.d[i].Brand_Id + '" btn-save-model="' + JSON.stringify(result.d[i]) + '">Edit</button>&nbsp' +
-                                    '<button class= "btn btn-danger btn-Show-delete" btn-delete-id="' + result.d[i].Brand_Id + '"> Delete</button ></td></tr>');
+                                $("#dataTable tbody").append("<tr><td>" + result.d[i].Brand_Name + "</td><td>" + (result.d[i].Brand_Status ? "Active" : "Inactive") + "</td>" +
+                                    "<td><button class='btn btn-primary btn-Show-Save' onclick='openSaveModal(" + result.d[i].Brand_Id + ",this);' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
+                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Brand_Id + ");'> Delete</button ></td></tr>");
                             }
                         }
                         else {
@@ -128,25 +150,7 @@
 
             $(".btn-Show-Save").click(function () {
                 var rowId = parseInt($(this).attr('btn-save-id'));
-                $("#btnSaveModal").attr('btn-save-id', rowId);
-                if (rowId > 0) {
-                    $("#addModalLabel").text("Edit Model");
-                    var model = JSON.parse((this).attr("btn-save-model"));
-                    $("#txtName").val(model.Brand_Name);
-                    $("#ddlStatus").val(model.Brand_Status);
-                }
-                else {
-                    $("#addModalLabel").text("Add Model");
-                    $("#txtName").val("");
-                    $("#ddlStatus").val("0");
-                }
-                $("#addBrandModal").modal('show');
-            });
-
-            $(".btn-Show-delete").click(function () {
-                var rowId = parseInt($(this).attr('btn-delete-id'));
-                $("#btnDeleteModal").attr('btn-save-id', rowId);
-                $("#deleteBrandModal").modal('show');
+                openSaveModal(rowId, $(this));
             });
 
             $("#btnSaveModal").click(function () {

@@ -96,7 +96,7 @@ namespace InventoryStore.DL
             return dl.ValidateSupplier(supplier);
         }
 
-        public tbl_Users ValidateUserLogin(string userName, string password)
+        public dynamic ValidateUserLogin(string userName, string password)
         {
             return dl.ValidateUserLogin(userName, password);
         }
