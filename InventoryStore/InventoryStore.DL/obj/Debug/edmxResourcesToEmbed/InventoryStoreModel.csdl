@@ -271,6 +271,39 @@
       <Parameter Name="GroupId" Mode="In" Type="Int32" />
       <Parameter Name="IsActive" Mode="In" Type="Boolean" />
     </FunctionImport>
+    <FunctionImport Name="SP_SaveOrder" ReturnType="Collection(InventoryStoreModel.SP_SaveOrder_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="ItemsCount" Mode="In" Type="Int32" />
+      <Parameter Name="Cost" Mode="In" Type="Decimal" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="BillNo" Mode="In" Type="String" />
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+      <Parameter Name="Customer_Address" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="GrossAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="SerivceCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="VatCharge" Mode="In" Type="Decimal" />
+      <Parameter Name="Discount" Mode="In" Type="Decimal" />
+      <Parameter Name="NetAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaidStatus" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveProduct" ReturnType="Collection(InventoryStoreModel.SP_SaveProduct_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="SKU" Mode="In" Type="String" />
+      <Parameter Name="SupplierId" Mode="In" Type="Int32" />
+      <Parameter Name="CategoryId" Mode="In" Type="Int32" />
+      <Parameter Name="BrandId" Mode="In" Type="Int32" />
+      <Parameter Name="StoreId" Mode="In" Type="Int32" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="ExpiryDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Availability" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="Search_Store_Result">
     <Property Type="Int32" Name="Store_Id" Nullable="false" />
@@ -305,5 +338,13 @@
   <ComplexType Name="SP_SaveUser_Result">
     <Property Type="Int32" Name="Result" Nullable="false" />
     <Property Type="String" Name="Msg" Nullable="false" MaxLength="24" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveOrder_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="29" />
+  </ComplexType>
+  <ComplexType Name="SP_SaveProduct_Result">
+    <Property Type="Int32" Name="Result" Nullable="false" />
+    <Property Type="String" Name="Msg" Nullable="false" MaxLength="28" />
   </ComplexType>
 </Schema>

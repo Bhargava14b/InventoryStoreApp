@@ -177,5 +177,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveOrder" FunctionName="InventoryStoreModel.Store.SP_SaveOrder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveOrder_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SaveProduct" FunctionName="InventoryStoreModel.Store.SP_SaveProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryStoreModel.SP_SaveProduct_Result">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

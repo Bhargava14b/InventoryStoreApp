@@ -1,19 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CommonMaster.master" AutoEventWireup="true" CodeBehind="Brand.aspx.cs" Inherits="InventoryStore.Brand" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CommonMaster.master" AutoEventWireup="true" CodeBehind="Groups.aspx.cs" Inherits="InventoryStore.Groups" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content-wrapper" class="d-flex flex-column">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Manage Brands</h1>
+            <h1 class="h3 mb-2 text-gray-800">Manage Groups</h1>
             <div style="clear: both; padding: 10px 0px 10px 0px">
-                <button class="btn-primary btn-Show-Save" btn-save-id="0" type="button">Add Brand</button>
-                <div class="modal fade" id="addBrandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <button class="btn-primary btn-Show-Save" btn-save-id="0" type="button">Add Group</button>
+                <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="addModalLabel">Add Brand</h5>
+                                <h5 class="modal-title" id="addModalLabel">Add Group</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -21,8 +20,8 @@
                             <div class="modal-body">
                                 <form runat="server">
                                     <div class="form-group">
-                                        <label>Brand Name</label>
-                                        <input type="text" class="form-control" id="txtName" placeholder="Enter Brand name" />
+                                        <label>Group Name</label>
+                                        <input type="text" class="form-control" id="txtName" placeholder="Enter Group name" />
                                     </div>
                                     <div class="form-group">
                                         <label>Status</label>
@@ -40,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="deleteBrandModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade" id="deleteGroupModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -67,11 +66,11 @@
                         <%--<asp:GridView ID="dataTable" runat="server" AutoGenerateColumns="false" DataKeyNames="User_Id" CssClass="table table-bordered"
                             OnRowCommand="dataTable_RowCommand">
                             <Columns>
-                                <asp:BoundField DataField="FirstName" HeaderText="Brand Name" />
+                                <asp:BoundField DataField="FirstName" HeaderText="Group Name" />
                                 <asp:BoundField DataField="LastName" HeaderText="Status" />
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addBrandModal">Edit</button>
+                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addGroupModal">Edit</button>
                                         <button class="btn btn-danger">Delete</button>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -80,7 +79,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Brand Name</th>
+                                    <th>Group Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -99,31 +98,31 @@
         function openSaveModal(id, that) {
             $("#btnSaveModal").attr('btn-save-id', id);
             if (id > 0) {
-                $("#addModalLabel").text("Edit Brand");
+                $("#addModalLabel").text("Edit Group");
                 var model = JSON.parse($(that).attr("btn-save-model"));
-                $("#txtName").val(model.Brand_Name);
-                $("#ddlStatus").val(model.Brand_Status ? "1" : "0");
+                $("#txtName").val(model.Group_Name);
+                $("#ddlStatus").val(model.Group_Status ? "1" : "0");
             }
             else {
-                $("#addModalLabel").text("Add Brand");
+                $("#addModalLabel").text("Add Group");
                 $("#txtName").val("");
                 $("#ddlStatus").val("1");
             }
-            $("#addBrandModal").modal('show');
+            $("#addGroupModal").modal('show');
         }
 
         function openDeleteConfirmation(id) {
             $("#btnDeleteModal").attr('btn-save-id', id);
-            $("#deleteBrandModal").modal('show');
+            $("#deleteGroupModal").modal('show');
         }
 
         $(document).ready(function () {
-            loadBrands();
+            loadGroups();
 
-            function loadBrands() {
+            function loadGroups() {
                 $.ajax({
                     type: "POST",
-                    url: '<%= ResolveUrl("Brand.aspx/GetBrands") %>',
+                    url: '<%= ResolveUrl("Groups.aspx/GetGroups") %>',
                     data: {},
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
@@ -134,9 +133,9 @@
                         $("#dataTable tbody").html("");
                         if (result && result.d && result.d.length > 0) {
                             for (var i = 0; i < result.d.length; i++) {
-                                $("#dataTable tbody").append("<tr><td>" + result.d[i].Brand_Name + "</td><td>" + (result.d[i].Brand_Status ? "Active" : "Inactive") + "</td>" +
-                                    "<td><button class='btn btn-primary btn-Show-Save' onclick='openSaveModal(" + result.d[i].Brand_Id + ",this);' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
-                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Brand_Id + ");'> Delete</button ></td></tr>");
+                                $("#dataTable tbody").append("<tr><td>" + result.d[i].Group_Name + "</td><td>" + (result.d[i].Group_Status ? "Active" : "Inactive") + "</td>" +
+                                    "<td><button class='btn btn-primary btn-Show-Save' onclick='openSaveModal(" + result.d[i].Group_Id + ",this);' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
+                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Group_Id + ");'> Delete</button ></td></tr>");
                             }
                         }
                         else {
@@ -161,7 +160,7 @@
                 };
                 $.ajax({
                     type: "POST",
-                    url: '<%= ResolveUrl("Brand.aspx/SaveBrand") %>',
+                    url: '<%= ResolveUrl("Groups.aspx/SaveGroup") %>',
                     data: JSON.stringify(reqData),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
@@ -170,9 +169,8 @@
                     },
                     success: function (result) {
                         if (result && result.d && result.d == true) {
-                            loadBrands();
-                            alert('Brand saved succesfully');
-                            $("#addBrandModal").modal('hide');
+                            loadGroups();
+                            $("#addGroupModal").modal('hide');
                         }
                         else {
                             alert('Error Saving! This may because duplicate name.');
@@ -187,7 +185,7 @@
                 };
                 $.ajax({
                     type: "POST",
-                    url: '<%= ResolveUrl("Brand.aspx/DeleteBrand") %>',
+                    url: '<%= ResolveUrl("Groups.aspx/DeleteGroup") %>',
                     data: JSON.stringify(reqData),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
@@ -196,8 +194,8 @@
                     },
                     success: function (result) {
                         if (result && result.d && result.d == true) {
-                            loadBrands();
-                            $("#deleteBrandModal").modal('hide');
+                            loadGroups();
+                            $("#deleteGroupModal").modal('hide');
                         }
                         else {
                             alert('Error Deleting record!');

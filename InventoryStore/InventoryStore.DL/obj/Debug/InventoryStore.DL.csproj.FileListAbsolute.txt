@@ -15,3 +15,13 @@ C:\Users\Admin\Source\Repos\InventoryStoreApp\InventoryStore\InventoryStore.DL\o
 C:\Users\Admin\Source\Repos\InventoryStoreApp\InventoryStore\InventoryStore.DL\obj\Debug\InventoryStore.DL.dll
 C:\Users\Admin\Source\Repos\InventoryStoreApp\InventoryStore\InventoryStore.DL\obj\Debug\InventoryStore.DL.pdb
 C:\Users\Admin\Source\Repos\InventoryStoreApp\InventoryStore\InventoryStore.DL\obj\Debug\InventoryStore.DL.csprojAssemblyReference.cache
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\InventoryStore.DL.dll.config
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\InventoryStore.DL.dll
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\InventoryStore.DL.pdb
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\EntityFramework.dll
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\EntityFramework.xml
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\obj\Debug\InventoryStore.DL.dll
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\obj\Debug\InventoryStore.DL.pdb
+C:\Users\SUJI\Source\Repos\InventoryStoreApp2\InventoryStore\InventoryStore.DL\obj\Debug\InventoryStore.DL.csprojResolveAssemblyReference.cache

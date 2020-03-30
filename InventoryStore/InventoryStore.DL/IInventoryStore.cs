@@ -12,6 +12,8 @@ namespace InventoryStore.DL
         dynamic GetDashboardDetails();
 
         List<tbl_Brands> GetBrands();
+        List<tbl_Orders> GetOrders(int userId);
+        List<tbl_Products> GetProducts();
 
         bool ValidateBrand(tbl_Brands brand);
 
@@ -44,5 +46,18 @@ namespace InventoryStore.DL
         bool SaveUser(tbl_Users user);
 
         dynamic ValidateUserLogin(string userName, string password);
+
+        bool DeleteCategory(int id);
+
+        bool DeleteStore(int id);
+
+        List<tbl_Groups> GetGroups();
+
+        bool ValidateGroup(tbl_Groups group);
+
+        bool SaveGroup(tbl_Groups group);
+
+        bool DeleteGroup(int id);
+
     }
 }

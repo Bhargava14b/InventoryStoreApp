@@ -81,6 +81,12 @@
     <Compile Include="SP_SaveGroup_Result.cs">
       <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SaveOrder_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SaveProduct_Result.cs">
+      <DependentUpon>InventoryStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SaveStore_Result.cs">
       <DependentUpon>InventoryStoreModel.tt</DependentUpon>
     </Compile>

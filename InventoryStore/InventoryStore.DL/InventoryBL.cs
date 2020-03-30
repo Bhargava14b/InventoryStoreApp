@@ -16,6 +16,14 @@ namespace InventoryStore.DL
             dl = new InventoryDL();
         }
 
+        public bool SaveOrder(tbl_Orders orders)
+        {
+            return dl.SaveOrder(orders);
+        }
+        public bool SaveProduct(tbl_Products product)
+        {
+            return dl.SaveProduct(product);
+        }
         public bool SaveBrand(tbl_Brands brand)
         {
             return dl.SaveBrand(brand);
@@ -28,7 +36,7 @@ namespace InventoryStore.DL
 
         public bool SaveCategory(tbl_Categories category)
         {
-            return SaveCategory(category);
+            return dl.SaveCategory(category);
         }
 
         public bool SaveStore(tbl_Stores store)
@@ -46,6 +54,14 @@ namespace InventoryStore.DL
             return dl.SaveUser(user);
         }
 
+        public List<tbl_Orders> GetOrders(int userId)
+        {
+            return dl.GetOrders(userId);
+        }
+        public List<tbl_Products> GetProducts()
+        {
+            return dl.GetProducts();
+        }
         public List<tbl_Brands> GetBrands()
         {
             return dl.GetBrands();
@@ -80,7 +96,7 @@ namespace InventoryStore.DL
         {
             return dl.ValidateBrand(brand);
         }
-
+       
         public bool ValidateCategory(tbl_Categories category)
         {
             return dl.ValidateCategory(category);
@@ -90,7 +106,10 @@ namespace InventoryStore.DL
         {
             return dl.ValidateStore(store);
         }
-
+        public bool ValidateProduct(tbl_Products product)
+        {
+            return dl.ValidateProduct(product);
+        }
         public bool ValidateSupplier(tbl_Supplier supplier)
         {
             return dl.ValidateSupplier(supplier);
@@ -104,6 +123,38 @@ namespace InventoryStore.DL
         public bool ValidateUserName(tbl_Users user)
         {
             return dl.ValidateUserName(user);
+        }
+
+
+        public bool DeleteCategory(int id)
+        {
+            return dl.DeleteCategory(id);
+        }
+
+        public bool DeleteStore(int id)
+        {
+            return dl.DeleteStore(id);
+        }
+
+
+        public List<tbl_Groups> GetGroups()
+        {
+            return dl.GetGroups();
+        }
+
+        public bool ValidateGroup(tbl_Groups group)
+        {
+            return dl.ValidateGroup(group);
+        }
+        public bool SaveGroup(tbl_Groups group)
+        {
+            return dl.SaveGroup(group);
+        }
+
+
+        public bool DeleteGroup(int id)
+        {
+            return dl.DeleteGroup(id);
         }
     }
 }

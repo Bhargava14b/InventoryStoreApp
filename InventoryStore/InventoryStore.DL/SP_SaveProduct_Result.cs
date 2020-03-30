@@ -14,7 +14,7 @@ namespace InventoryStore.DL
 
 using System;
     
-public partial class SP_SaveStore_Result
+public partial class SP_SaveProduct_Result
 {
 
     public int Result { get; set; }

@@ -8,32 +8,53 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Manage Stores</h1>
             <div style="clear: both; padding: 10px 0px 10px 0px">
-                <button class="btn-primary" type="button" data-toggle="modal" data-target="#addStoresModal">Add Stores</button>
-                <div class="modal fade" id="addStoresModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <button class="btn-primary btn-Show-Save" btn-save-id="0" type="button">Add Store</button>
+                <div class="modal fade" id="addStoreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Stores</h5>
+                                <h5 class="modal-title" id="addModalLabel">Add Store</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="exampleFormControlInput1">Stores Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Stores name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Status</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
-                                </div>
+                                <form runat="server">
+                                    <div class="form-group">
+                                        <label>Store Name</label>
+                                        <input type="text" class="form-control" id="txtName" placeholder="Enter Store name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="form-control" id="ddlStatus">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="#">Save</a>
+                                <a class="btn btn-primary" href="#" id="btnSaveModal">Save</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="deleteStoreModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Confirmation</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <span>Are you sure want to delete this record?</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" href="#" id="btnDeleteModal">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -43,47 +64,148 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
+                        <%--<asp:GridView ID="dataTable" runat="server" AutoGenerateColumns="false" DataKeyNames="User_Id" CssClass="table table-bordered"
+                            OnRowCommand="dataTable_RowCommand">
+                            <Columns>
+                                <asp:BoundField DataField="FirstName" HeaderText="Store Name" />
+                                <asp:BoundField DataField="LastName" HeaderText="Status" />
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addStoreModal">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>--%>
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Stores Name</th>
+                                    <th>Store Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Store1</td>
-                                    <td>Available</td>
-                                    <td>
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Store2</td>
-                                    <td>Available</td>
-                                    <td>
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Store3</td>
-                                    <td>Available</td>
-                                    <td>
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        function openSaveModal(id, that) {
+            $("#btnSaveModal").attr('btn-save-id', id);
+            if (id > 0) {
+                $("#addModalLabel").text("Edit Store");
+                var model = JSON.parse($(that).attr("btn-save-model"));
+                $("#txtName").val(model.Store_Name);
+                $("#ddlStatus").val(model.Store_Status ? "1" : "0");
+            }
+            else {
+                $("#addModalLabel").text("Add Store");
+                $("#txtName").val("");
+                $("#ddlStatus").val("1");
+            }
+            $("#addStoreModal").modal('show');
+        }
+
+        function openDeleteConfirmation(id) {
+            $("#btnDeleteModal").attr('btn-save-id', id);
+            $("#deleteStoreModal").modal('show');
+        }
+
+        $(document).ready(function () {
+            loadStores();
+
+            function loadStores() {
+                $.ajax({
+                    type: "POST",
+                    url: '<%= ResolveUrl("Stores.aspx/GetStores") %>',
+                    data: {},
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                    },
+                    success: function (result) {
+                        $("#dataTable tbody").html("");
+                        if (result && result.d && result.d.length > 0) {
+                            for (var i = 0; i < result.d.length; i++) {
+                                $("#dataTable tbody").append("<tr><td>" + result.d[i].Store_Name + "</td><td>" + (result.d[i].Store_Status ? "Active" : "Inactive") + "</td>" +
+                                    "<td><button class='btn btn-primary btn-Show-Save' onclick='openSaveModal(" + result.d[i].Store_Id + ",this);' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
+                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Store_Id + ");'> Delete</button ></td></tr>");
+                            }
+                        }
+                        else {
+                            $("#dataTable tbody").append('<tr><td colspan="3">No records found!</td><td>');
+                        }
+                        $('#dataTable').DataTable();
+                        //alert("We returned: " + JSON.stringify(result));
+                    }
+                });
+            }
+
+            $(".btn-Show-Save").click(function () {
+                var rowId = parseInt($(this).attr('btn-save-id'));
+                openSaveModal(rowId, $(this));
+            });
+
+            $("#btnSaveModal").click(function () {
+                var reqData = {
+                    id: $(this).attr('btn-save-id'),
+                    name: $("#txtName").val(),
+                    status: $("#ddlStatus").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '<%= ResolveUrl("Stores.aspx/SaveStore") %>',
+                    data: JSON.stringify(reqData),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                    },
+                    success: function (result) {
+                        if (result && result.d && result.d == true) {
+                            loadStores();
+                            $("#addStoreModal").modal('hide');
+                        }
+                        else {
+                            alert('Error Saving! This may because duplicate name.');
+                        }
+                    }
+                });
+            });
+
+            $("#btnDeleteModal").click(function () {
+                var reqData = {
+                    id: $(this).attr('btn-save-id')
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '<%= ResolveUrl("Stores.aspx/DeleteStore") %>',
+                    data: JSON.stringify(reqData),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+                    },
+                    success: function (result) {
+                        if (result && result.d && result.d == true) {
+                            loadStores();
+                            $("#deleteStoreModal").modal('hide');
+                        }
+                        else {
+                            alert('Error Deleting record!');
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
 </asp:Content>
 

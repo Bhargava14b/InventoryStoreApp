@@ -31,6 +31,38 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
+        public List<tbl_Orders> GetOrders(int userid)
+        {
+            try
+            {
+                return dbContext.tbl_Orders.Include("tbl_Products").Where(x => x.User_Id == userid).ToList();
+                //return dbContext.tbl_Orders.Where(x => x.User_Id == userid).Select(x => new
+                //{
+                //    OrderId = x.Order_Id,
+                //    CustomerName = x.Customer_Name,
+                //    Quantity = x.Items_Count,
+                //    Amount = x.Amount,
+                //    GrossAmount = x.Gross_Amount,
+                //    ServiceCharge = x.Service_Charge,
+                //    Vat = x.Vat_Charge,
+                //});
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<tbl_Products> GetProducts()
+        {
+            try
+            {
+                return dbContext.tbl_Products.Include("tbl_Brands").Include("tbl_Categories").Include("tbl_Stores").Include("tbl_Supplier").ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<tbl_Brands> GetBrands()
         {
             try
@@ -124,7 +156,7 @@ namespace InventoryStore.DL
         {
             try
             {
-                var result = dbContext.SP_SaveCategory(category.Category_Id, category.Category_Name, category.Category_Status);
+                var result = dbContext.SP_SaveCategory(category.Category_Id, category.Category_Name, category.Category_Status).ToList();
                 if (result.Any())
                 {
                     if (result.FirstOrDefault().Result == 1)
@@ -166,7 +198,7 @@ namespace InventoryStore.DL
         {
             try
             {
-                var result = dbContext.SP_SaveStore(store.Store_Id, store.Store_Name, store.Store_Status);
+                var result = dbContext.SP_SaveStore(store.Store_Id, store.Store_Name, store.Store_Status).ToList();
                 if (result.Any())
                 {
                     if (result.FirstOrDefault().Result == 1)
@@ -275,12 +307,13 @@ namespace InventoryStore.DL
                     var group = dbContext.tbl_Groups.FirstOrDefault(x => x.Group_Id == user.Group_Id);
                     return new
                     {
+                        UserId = user.User_Id,
                         UserName = user.User_Name,
                         Email = user.Email_Id,
-                        MenuAccess = group.Menu_Access
+                        MenuAccess = group != null ? group.Menu_Access : ""
                     };
                 }
-                
+
                 return user;
             }
             catch (Exception ex)
@@ -289,5 +322,169 @@ namespace InventoryStore.DL
             }
         }
         #endregion
+
+        public bool DeleteCategory(int id)
+        {
+            try
+            {
+                var exCategory = dbContext.tbl_Categories.FirstOrDefault(x => x.Category_Id == id);
+                if (exCategory != null)
+                {
+                    dbContext.tbl_Categories.Remove(exCategory);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool DeleteStore(int id)
+        {
+            try
+            {
+                var exStore = dbContext.tbl_Stores.FirstOrDefault(x => x.Store_Id == id);
+                if (exStore != null)
+                {
+                    dbContext.tbl_Stores.Remove(exStore);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public List<tbl_Groups> GetGroups()
+        {
+            try
+            {
+                return dbContext.tbl_Groups.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool ValidateGroup(tbl_Groups Group)
+        {
+            try
+            {
+                if (Group.Group_Id > 0)
+                    return dbContext.tbl_Groups.Any(x => x.Group_Name == Group.Group_Name && x.Group_Id != Group.Group_Id);
+                else
+                    return dbContext.tbl_Groups.Any(x => x.Group_Name == Group.Group_Name);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool SaveGroup(tbl_Groups Group)
+        {
+            try
+            {
+                var result = dbContext.SP_SaveGroup(Group.Group_Id, Group.Group_Name, Group.Menu_Access).ToList();
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DeleteGroup(int id)
+        {
+            try
+            {
+                var exStore = dbContext.tbl_Groups.FirstOrDefault(x => x.Group_Id == id);
+                if (exStore != null)
+                {
+                    dbContext.tbl_Groups.Remove(exStore);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool ValidateProduct(tbl_Products product)
+        {
+            try
+            {
+                if (product.Product_ID > 0)
+                    return dbContext.tbl_Products.Any(x => x.Product_Name == product.Product_Name && x.Product_ID != product.Product_ID);
+                else
+                    return dbContext.tbl_Products.Any(x => x.Product_Name == product.Product_Name);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool SaveProduct(tbl_Products product)
+        {
+            try
+            {
+                var result = dbContext.SP_SaveProduct(product.Product_ID,product.Product_Name, product.SKU, product.Supplier_Id,product.Category_Id, product.Brand_Id, product.Store_Id, product.Product_Description, product.Product_Quantity, product.Price, product.ExpiryDate, product.Availability).ToList();
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool SaveOrder(tbl_Orders Order)
+        {
+            try
+            {
+                var result = dbContext.SP_SaveOrder(Order.Order_Id,Order.Product_Id,Order.Items_Count,Order.Product_Cost,Order.Amount,Order.Bill_No,Order.Customer_Name,
+Order.Customer_Address,Order.Customer_Phone,Order.CreatedDate,Order.Gross_Amount,Order.Service_Charge,
+Order.Vat_Charge,Order.Discount,Order.NetAmount,Order.Paid_Status,Order.User_Id).ToList();
+                if (result.Any())
+                {
+                    if (result.FirstOrDefault().Result == 1)
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

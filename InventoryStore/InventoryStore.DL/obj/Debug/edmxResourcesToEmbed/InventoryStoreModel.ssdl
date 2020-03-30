@@ -193,6 +193,39 @@
     <Parameter Name="Name" Type="varchar" Mode="In" />
     <Parameter Name="Menus" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SP_SaveOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+    <Parameter Name="ItemsCount" Type="int" Mode="In" />
+    <Parameter Name="Cost" Type="numeric" Mode="In" />
+    <Parameter Name="Amount" Type="numeric" Mode="In" />
+    <Parameter Name="BillNo" Type="varchar" Mode="In" />
+    <Parameter Name="CustomerName" Type="varchar" Mode="In" />
+    <Parameter Name="Customer_Address" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="CreatedDate" Type="date" Mode="In" />
+    <Parameter Name="GrossAmount" Type="numeric" Mode="In" />
+    <Parameter Name="SerivceCharge" Type="numeric" Mode="In" />
+    <Parameter Name="VatCharge" Type="numeric" Mode="In" />
+    <Parameter Name="Discount" Type="numeric" Mode="In" />
+    <Parameter Name="NetAmount" Type="numeric" Mode="In" />
+    <Parameter Name="PaidStatus" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SaveProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="ProductName" Type="varchar" Mode="In" />
+    <Parameter Name="SKU" Type="varchar" Mode="In" />
+    <Parameter Name="SupplierId" Type="int" Mode="In" />
+    <Parameter Name="CategoryId" Type="int" Mode="In" />
+    <Parameter Name="BrandId" Type="int" Mode="In" />
+    <Parameter Name="StoreId" Type="int" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="Quantity" Type="int" Mode="In" />
+    <Parameter Name="Price" Type="numeric" Mode="In" />
+    <Parameter Name="ExpiryDate" Type="datetime" Mode="In" />
+    <Parameter Name="Availability" Type="bit" Mode="In" />
+  </Function>
   <Function Name="SP_SaveStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="Name" Type="varchar" Mode="In" />

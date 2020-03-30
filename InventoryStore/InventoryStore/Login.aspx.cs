@@ -24,6 +24,7 @@ namespace InventoryStore
                 if (user != null)
                 {
                     Session["User"] = user;
+                    Session["UserId"] = user.GetType().GetProperty("UserId").GetValue(user, null);
                     Response.Redirect("Dashboard.aspx");
                 }
                 else
