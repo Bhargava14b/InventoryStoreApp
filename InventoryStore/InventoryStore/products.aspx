@@ -12,7 +12,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" style="overflow: auto !important;" class="d-flex flex-column">
         <div class="auto-style1">
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Manage Products</h1>
@@ -28,30 +28,18 @@
                             <thead>
                                 <tr>
                                     <th>Product Name</th>
-<th>Product_ID</th>
-<th>Product_Name</th>
-<th>SKU</th>
-<th>Supplier_Id</th>
-<th>Category_Id</th>
-<th>Brand_Id</th>
-<th>Store_Id</th>
-<th>Product_Description</th>
-<th>Product_Quantity</th>
-<th>Price</th>
-<th>ExpiryDate</th>
-<th>Availability</th>
+                                    <%--<th>Supplier</th>--%>
+                                    <%--<th>Category</th>--%>
+                                    <%--<th>Brand</th>--%>
+                                    <%--<th>Store</th>--%>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Expiry Date</th>
+                                    <th>Availability</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                                                       <td>
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                
-
                             </tbody>
                         </table>
                     </div>
@@ -65,14 +53,18 @@
             loadProducts();
 
             $("#btnAddProduct").click(function () {
-                window.location.href = "AddProduct.aspx";
+                addEditProduct(0);
             });
+
+            function addEditProduct(productId) {
+                window.location.href = '<%= ResolveUrl("AddProduct.aspx") %>' + '?ProductId=' + productId;
+            }
 
             function loadProducts() {
                 $.ajax({
                     type: "POST",
                     url: '<%= ResolveUrl("Products.aspx/GetProducts") %>',
-                    data: {},
+                    data: JSON.stringify({ productId: 0 }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -82,29 +74,29 @@
                         $("#dataTable tbody").html("");
                         if (result && result.d && result.d.length > 0) {
                             for (var i = 0; i < result.d.length; i++) {
-                                $("#dataTable tbody").append("<tr><td>" + result.d[i].Product_ID + "</td><td>" +
-result.d[i].Product_Name + "</td><td>" +result.d[i].SKU + "</td><td>" +result.d[i].Supplier_Id + "</td><td>" +
-result.d[i].Category_Id + "</td><td>" +result.d[i].Brand_Id + "</td><td>" +result.d[i].Store_Id + "</td><td>" +
-result.d[i].Product_Description + "</td><td>" +result.d[i].Product_Quantity + "</td><td>" +
-result.d[i].Price + "</td><td>" +result.d[i].ExpiryDate + "</td><td>" +(result.d[i].Availability ? "Active" : "Inactive") + "</td>" +
-
-                                    "<td><button class='btn btn-primary btn-Show-Save' onclick='openSaveModal(" + result.d[i].Brand_Id + ",this);' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
-                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Brand_Id + ");'> Delete</button ></td></tr>");
-                                                               
-                                
-                                
-                                
+                                $("#dataTable tbody").append("<tr>" +
+                                    "<td>" + result.d[i].Product_Name + "</td>" +
+                                    //"<td>" + result.d[i].Supplier_Name + "</td>" +
+                                    //"<td>" + result.d[i].Category_Name + "</td>" +
+                                    //"<td>" + result.d[i].Brand_Name + "</td>" +
+                                    //"<td>" + result.d[i].Store_Name + "</td>" +
+                                    "<td>" + result.d[i].Product_Quantity + "</td>" +
+                                    "<td>" + result.d[i].Price + "</td>" +
+                                    "<td>" + result.d[i].ExpiryDate + "</td>" +
+                                    "<td>" + (result.d[i].Availability ? "Active" : "Inactive") + "</td>" +
+                                    "<td><button class='btn btn-primary btn-Show-Save' onclick='addEditProduct(" + result.d[i].Product_ID + ");' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
+                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Product_ID + ");'> Delete</button ></td></tr>");
                             }
                         }
                         else {
-                            $("#dataTable tbody").append('<tr><td colspan="3">No records found!</td><td>');
+                            $("#dataTable tbody").append('<tr><td colspan="12">No records found!</td><td>');
                         }
                         $('#dataTable').DataTable();
                         //alert("We returned: " + JSON.stringify(result));
                     }
                 });
             }
-});
+        });
     </script>
 </asp:Content>
 

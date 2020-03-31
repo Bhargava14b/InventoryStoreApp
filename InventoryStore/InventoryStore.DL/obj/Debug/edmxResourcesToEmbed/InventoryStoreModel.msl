@@ -193,5 +193,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetOrders" FunctionName="InventoryStoreModel.Store.SP_GetOrders" />
+    <FunctionImportMapping FunctionImportName="SP_GetProducts" FunctionName="InventoryStoreModel.Store.SP_GetProducts" />
   </EntityContainerMapping>
 </Mapping>

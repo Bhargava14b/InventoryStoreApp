@@ -35,7 +35,7 @@
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button Text="Action" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" />
+                                        <asp:Button Text="Edit" CssClass="btn-primary" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

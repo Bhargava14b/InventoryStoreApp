@@ -12,19 +12,27 @@ namespace InventoryStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["ProductId"] != null ? Request.QueryString["ProductId"].ToString() : "0";
+            hdnProductId.Value = id;
+
             if (!Page.IsPostBack)
                 LoadDropdowns();
         }
-        
+
         public void LoadDropdowns()
         {
             InventoryBL bl = new InventoryBL();
-            var supplier = bl.GetSuppliers();
+            var supplier = bl.GetSuppliers(0);
             var categories = bl.GetCategories();
             var brands = bl.GetBrands();
             var stores = bl.GetStores();
 
-            foreach(var sup in supplier)
+            ddlSupplier.Items.Add(new ListItem("Select", "0"));
+            ddlCategory.Items.Add(new ListItem("Select", "0"));
+            ddlBrand.Items.Add(new ListItem("Select", "0"));
+            ddlStore.Items.Add(new ListItem("Select", "0"));
+
+            foreach (var sup in supplier)
             {
                 ddlSupplier.Items.Add(new ListItem(sup.Supplier_Name, sup.Supplier_Id.ToString()));
             }
@@ -48,7 +56,7 @@ namespace InventoryStore
             InventoryBL bl = new InventoryBL();
             tbl_Products product = new tbl_Products()
             {
-                Product_ID = 0,
+                Product_ID = Convert.ToInt32(hdnProductId.Value),
                 Product_Name = txtProductName.Text,
                 SKU = txtSKU.Text,
                 Supplier_Id = Convert.ToInt32(ddlSupplier.SelectedValue),
@@ -59,22 +67,34 @@ namespace InventoryStore
                 Product_Quantity = Convert.ToInt32(txtQuantity.Text),
                 Price = Convert.ToInt32(txtPrice.Text),
                 ExpiryDate = !string.IsNullOrEmpty(txtExpiryDate.Text) ? Convert.ToDateTime(txtExpiryDate.Text) : DateTime.MaxValue,
-                Availability =Convert.ToBoolean(ddlActive.SelectedValue)
+                Availability = Convert.ToBoolean(ddlActive.SelectedValue)
             };
-            
+
             //if (!bl.ValidateProduct(product))
             //{
-                bool result = bl.SaveProduct(product);
-                if (result==true)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "product error", "alert('Product Saved successfully!');", true);
-                    Response.Redirect("products.aspx");
-                }
-           // }
-         
-    
+            bool result = bl.SaveProduct(product);
+            if (result == true)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "product error", "alert('Product Saved successfully!');", true);
+                Response.Redirect("products.aspx");
+            }
+            // }
+
+
         }
 
+        protected void ddlSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //int supplierId = Convert.ToInt32(ddlSupplier.SelectedItem.Value);
+            //if (supplierId > 0)
+            //{
+            //    InventoryBL bl = new InventoryBL();
+            //    var supplier = bl.GetSuppliers(supplierId);
+            //    if (supplier.Any())
+            //    {
 
+            //    }
+            //}
+        }
     }
 }

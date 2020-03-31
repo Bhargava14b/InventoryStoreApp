@@ -8,7 +8,7 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Manage Orders</h1>
             <div style="clear: both; padding: 10px 0px 10px 0px">
-                <asp:Button runat="server" ID="btnAddOrder" CssClass="btn-primary" Text="Add Order" OnClick="btnAddOrder_Click" />
+                <button type="button" id="btnAddOrder" class="btn-primary">Add Order</button>
             </div>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -21,9 +21,10 @@
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Amount</th>
-                                    <th>Gross Amount</th>
+                                    <th>Net Amount</th>
                                     <th>Service Charge</th>
                                     <th>Vat</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +35,7 @@
             </div>
         </div>
     </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             loadOrders();
@@ -52,20 +54,30 @@
                         $("#dataTable tbody").html("");
                         if (result && result.d && result.d.length > 0) {
                             for (var i = 0; i < result.d.length; i++) {
-                                //$("#dataTable tbody").append("<tr><td>" + result.d[i].Order_Name + "</td><td>" + (result.d[i].Brand_Status ? "Active" : "Inactive") + "</td>" +
-                                //    "<td><button class='btn btn-primary btn-Show-Save' onclick='openSaveModal(" + result.d[i].Brand_Id + ",this);' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
-                                //    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Brand_Id + ");'> Delete</button ></td></tr>");
+                                $("#dataTable tbody").append("<tr>" +
+                                    "<td>" + result.d[i].Customer_Name + "</td>" +
+                                    "<td>" + result.d[i].tbl_Products.Product_Name + "</td>" +
+                                    "<td>" + result.d[i].Items_Count + "</td>" +
+                                    "<td>" + result.d[i].NetAmount + "</td>" +
+                                    "<td>" + result.d[i].Service_Charge + "</td>" +
+                                    "<td>" + result.d[i].Vat_Charge + "</td>" +
+                                    "<td><button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Order_Id + ");'>Delete</button></td></tr>");
                             }
+                            $('#dataTable').DataTable();
                         }
                         else {
-                            $("#dataTable tbody").append('<tr><td colspan="3">No records found!</td><td>');
+                            $("#dataTable tbody").append('<tr><td colspan="7">No records found!</td><td>');
                         }
-                        $('#dataTable').DataTable();
                         //alert("We returned: " + JSON.stringify(result));
                     }
                 });
             }
-});
+
+            $("#btnAddOrder").click(function () {
+                window.location.href = '<%= ResolveUrl("AddOrder.aspx") %>';
+            });
+
+        });
     </script>
 </asp:Content>
 

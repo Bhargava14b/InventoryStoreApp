@@ -58,9 +58,9 @@ namespace InventoryStore.DL
         {
             return dl.GetOrders(userId);
         }
-        public List<tbl_Products> GetProducts()
+        public List<tbl_Products> GetProducts(int productId)
         {
-            return dl.GetProducts();
+            return dl.GetProducts(productId);
         }
         public List<tbl_Brands> GetBrands()
         {
@@ -82,9 +82,9 @@ namespace InventoryStore.DL
             return dl.GetStores();
         }
 
-        public List<tbl_Supplier> GetSuppliers()
+        public List<tbl_Supplier> GetSuppliers(int supplierId)
         {
-            return dl.GetSuppliers();
+            return dl.GetSuppliers(supplierId);
         }
 
         public List<tbl_Users> GetUsers()
@@ -151,10 +151,14 @@ namespace InventoryStore.DL
             return dl.SaveGroup(group);
         }
 
-
         public bool DeleteGroup(int id)
         {
             return dl.DeleteGroup(id);
+        }
+
+        public bool DeleteSupplier(int id)
+        {
+            return dl.DeleteSupplier(id);
         }
     }
 }

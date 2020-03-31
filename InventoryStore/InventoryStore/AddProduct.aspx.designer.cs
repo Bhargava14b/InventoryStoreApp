@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InventoryStore {
-    
-    
-    public partial class AddProduct {
-        
+namespace InventoryStore
+{
+
+
+    public partial class AddProduct
+    {
+
         /// <summary>
         /// fromAddProduct control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm fromAddProduct;
-        
+
         /// <summary>
         /// txtProductName control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
-        
+
+        /// <summary>
+        /// hdnProductId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnProductId;
+
         /// <summary>
         /// txtSKU control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSKU;
-        
+
         /// <summary>
         /// ddlSupplier control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
-        
+
         /// <summary>
         /// ddlCategory control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-        
+
         /// <summary>
         /// ddlBrand control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBrand;
-        
+
         /// <summary>
         /// ddlStore control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStore;
-        
+
         /// <summary>
         /// txtDescription control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
-        
+
         /// <summary>
         /// txtQuantity control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuantity;
-        
+
         /// <summary>
         /// txtPrice control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
-        
+
         /// <summary>
         /// txtExpiryDate control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExpiryDate;
-        
+
         /// <summary>
         /// ddlActive control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace InventoryStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlActive;
-        
+
         /// <summary>
         /// btnSaveProduct control.
         /// </summary>

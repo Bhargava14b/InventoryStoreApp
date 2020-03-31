@@ -12,53 +12,54 @@
                     <form runat="server" id="fromAddProduct">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Product name</label>
+                                <label>Product name</label>
                                 <asp:TextBox runat="server" required CssClass="form-control" ID="txtProductName"></asp:TextBox>
+                                <asp:HiddenField ID="hdnProductId" runat="server" />
                             </div>
                             <div class="col-md-6">
-                                <label for="validationTooltip02">SKU</label>
+                                <label>SKU</label>
                                 <asp:TextBox runat="server" required CssClass="form-control" ID="txtSKU"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Supplier</label>
-                                <asp:DropDownList runat="server" required CssClass="form-control" ID="ddlSupplier"></asp:DropDownList>
+                                <label>Supplier</label>
+                                <asp:DropDownList runat="server" required CssClass="form-control" ID="ddlSupplier" AutoPostBack="true" OnSelectedIndexChanged="ddlSupplier_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Category</label>
+                                <label>Category</label>
                                 <asp:DropDownList runat="server" required CssClass="form-control" ID="ddlCategory"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Brand</label>
+                                <label>Brand</label>
                                 <asp:DropDownList runat="server" required CssClass="form-control" ID="ddlBrand"></asp:DropDownList>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Store</label>
+                                <label>Store</label>
                                 <asp:DropDownList runat="server" required CssClass="form-control" ID="ddlStore"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12">
-                                <label for="validationTooltip01">Description</label>
+                                <label>Description</label>
                                 <asp:TextBox runat="server" required CssClass="form-control" ID="txtDescription"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Quantity</label>
+                                <label>Quantity</label>
                                 <asp:TextBox runat="server" required CssClass="form-control" ID="txtQuantity" TextMode="Number"></asp:TextBox>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Price</label>
+                                <label>Price</label>
                                 <asp:TextBox runat="server" required CssClass="form-control" ID="txtPrice" TextMode="Number"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="validationTooltip01">Expiry Date</label>
+                                <label>Expiry Date</label>
                                 <asp:TextBox runat="server" required CssClass="form-control" ID="txtExpiryDate" TextMode="Date"></asp:TextBox>
                             </div>
                             <div class="col-md-6">
@@ -69,9 +70,10 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
+                        <br />
                         <div class="form-row">
-                            <div class="col-md-6">
-                                <asp:Button runat="server" Text="Save" ID="btnSaveProduct" OnClick="btnSaveProduct_Click" />
+                            <div class="col-md-12">
+                                <asp:Button runat="server" Style="float: right;" CssClass="btn btn-success" Text="Save" ID="btnSaveProduct" OnClick="btnSaveProduct_Click" />
                             </div>
                         </div>
                     </form>
@@ -79,4 +81,9 @@
             </div>
         </div>
     </div>
+    <style type="text/css">
+        .card-body label {
+            padding-top: 15px;
+        }
+    </style>
 </asp:Content>

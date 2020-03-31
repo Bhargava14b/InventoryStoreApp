@@ -13,7 +13,7 @@ namespace InventoryStore.DL
 
         List<tbl_Brands> GetBrands();
         List<tbl_Orders> GetOrders(int userId);
-        List<tbl_Products> GetProducts();
+        List<tbl_Products> GetProducts(int productId);
 
         bool ValidateBrand(tbl_Brands brand);
 
@@ -33,7 +33,7 @@ namespace InventoryStore.DL
 
         bool SaveStore(tbl_Stores store);
 
-        List<tbl_Supplier> GetSuppliers();
+        List<tbl_Supplier> GetSuppliers(int supplierId);
 
         bool ValidateSupplier(tbl_Supplier supplier);
 
@@ -58,6 +58,8 @@ namespace InventoryStore.DL
         bool SaveGroup(tbl_Groups group);
 
         bool DeleteGroup(int id);
+
+        bool DeleteSupplier(int id);
 
     }
 }

@@ -14,10 +14,16 @@ public partial class Stores : System.Web.UI.Page
 
     }
     [WebMethod]
-    public static List<tbl_Stores> GetStores()
+    public static dynamic GetStores()
     {
         InventoryBL bl = new InventoryBL();
-        return bl.GetStores();
+        var result = bl.GetStores().Select(x => new
+        {
+            Store_Id = x.Store_Id,
+            Store_Name = x.Store_Name,
+            Store_Status = x.Store_Status
+        }).ToList();
+        return result;
     }
 
     [WebMethod]

@@ -1,8 +1,8 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CommonMaster.master.cs" Inherits="CommonMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CommonMaster.Master.cs" Inherits="InventoryStore.CommonMaster" %>
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,19 +46,41 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Brand.aspx"><i class="fas fa-fw fa-bolt"></i><span>Brands</span></a>
-                <a class="nav-link" href="Category.aspx"><i class="fas fa-fw fa-check"></i><span>Categories</span></a>
-                <a class="nav-link" href="Stores.aspx"><i class="fas fa-fw fa-clipboard-list"></i><span>Stores</span></a>
+                <asp:HyperLink runat="server" ID="lnkBrands" NavigateUrl="~/Brand.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-bolt"></i><span>Brands</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Brand.aspx" id="lnkBrands" runat="server"><i class="fas fa-fw fa-bolt"></i><span>Brands</span></a>--%>
+                <asp:HyperLink runat="server" ID="lnkCategories" NavigateUrl="~/Category.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-check"></i><span>Categories</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Category.aspx"><i class="fas fa-fw fa-check"></i><span>Categories</span></a>--%>
+                <asp:HyperLink runat="server" ID="lnkStores" NavigateUrl="~/Stores.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-clipboard-list"></i><span>Stores</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Stores.aspx"><i class="fas fa-fw fa-clipboard-list"></i><span>Stores</span></a>--%>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
-                <a class="nav-link" href="Products.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Products</span></a>
-                <a class="nav-link" href="Orders.aspx"><i class="fas fa-fw fa-cart-arrow-down"></i><span>Orders</span></a>
+                <asp:HyperLink runat="server" ID="lnkProducts" NavigateUrl="~/products.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-paragraph"></i><span>Products</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Products.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Products</span></a>--%>
+                <asp:HyperLink runat="server" ID="lnkOrders" NavigateUrl="~/orders.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-cart-arrow-down"></i><span>Orders</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Orders.aspx"><i class="fas fa-fw fa-cart-arrow-down"></i><span>Orders</span></a>--%>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
-                <a class="nav-link" href="Users.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Users</span></a>
+                <asp:HyperLink runat="server" ID="lnkUsers" NavigateUrl="~/Users.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-paragraph"></i><span>Users</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Users.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Users</span></a>--%>
+                <asp:HyperLink runat="server" ID="lnkSuppliers" NavigateUrl="~/Suppliers.aspx" CssClass="nav-link">
+                    <i class="fas fa-fw fa-paragraph"></i><span>Suppliers</span>
+                </asp:HyperLink>
+                <%--<a class="nav-link" href="Suppliers.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Suppliers</span></a>--%>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->

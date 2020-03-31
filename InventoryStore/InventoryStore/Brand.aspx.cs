@@ -40,10 +40,16 @@ namespace InventoryStore
         }
 
         [WebMethod]
-        public static List<tbl_Brands> GetBrands()
+        public static dynamic GetBrands()
         {
             InventoryBL bl = new InventoryBL();
-            return bl.GetBrands();
+            var result = bl.GetBrands().Select(x => new
+            {
+                Brand_Id = x.Brand_Id,
+                Brand_Name = x.Brand_Name,
+                Brand_Status = x.Brand_Status
+            }).ToList();
+            return result;
         }
 
         [WebMethod]

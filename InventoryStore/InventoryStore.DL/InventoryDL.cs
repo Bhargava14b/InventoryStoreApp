@@ -52,11 +52,28 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
-        public List<tbl_Products> GetProducts()
+        public List<tbl_Products> GetProducts(int productId)
         {
             try
             {
-                return dbContext.tbl_Products.Include("tbl_Brands").Include("tbl_Categories").Include("tbl_Stores").Include("tbl_Supplier").ToList();
+                //var result = from products in dbContext.tbl_Products
+                //             join supplier in dbContext.tbl_Supplier on products.Supplier_Id equals supplier.Supplier_Id
+                //             join brand in dbContext.tbl_Brands on products.Brand_Id equals brand.Brand_Id
+                //             join category in dbContext.tbl_Categories on products.Category_Id equals category.Category_Id
+                //             join store in dbContext.tbl_Stores on products.Store_Id equals store.Store_Id
+                //             select new tbl_Products
+                //             {
+                //                 c
+                //             };
+
+                var result = dbContext.tbl_Products.ToList();
+
+                if (productId > 0)
+                {
+                    return result.Where(x => x.Product_ID == productId).ToList();
+                }
+
+                return result.ToList();
             }
             catch (Exception ex)
             {
@@ -211,11 +228,14 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
-        public List<tbl_Supplier> GetSuppliers()
+        public List<tbl_Supplier> GetSuppliers(int supplierId)
         {
             try
             {
-                return dbContext.tbl_Supplier.ToList();
+                if (supplierId > 0)
+                    return dbContext.tbl_Supplier.Where(x => x.Supplier_Id == supplierId).ToList();
+                else
+                    return dbContext.tbl_Supplier.ToList();
             }
             catch (Exception ex)
             {
@@ -249,6 +269,30 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
+
+        public bool DeleteSupplier(int id)
+        {
+            try
+            {
+                var exBrand = dbContext.tbl_Supplier.FirstOrDefault(x => x.Supplier_Id == id);
+                if (exBrand != null)
+                {
+                    dbContext.tbl_Supplier.Remove(exBrand);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         #region Users
         public List<tbl_Users> GetUsers()
@@ -453,7 +497,7 @@ namespace InventoryStore.DL
         {
             try
             {
-                var result = dbContext.SP_SaveProduct(product.Product_ID,product.Product_Name, product.SKU, product.Supplier_Id,product.Category_Id, product.Brand_Id, product.Store_Id, product.Product_Description, product.Product_Quantity, product.Price, product.ExpiryDate, product.Availability).ToList();
+                var result = dbContext.SP_SaveProduct(product.Product_ID, product.Product_Name, product.SKU, product.Supplier_Id, product.Category_Id, product.Brand_Id, product.Store_Id, product.Product_Description, product.Product_Quantity, product.Price, product.ExpiryDate, product.Availability).ToList();
                 if (result.Any())
                 {
                     if (result.FirstOrDefault().Result == 1)
@@ -471,9 +515,9 @@ namespace InventoryStore.DL
         {
             try
             {
-                var result = dbContext.SP_SaveOrder(Order.Order_Id,Order.Product_Id,Order.Items_Count,Order.Product_Cost,Order.Amount,Order.Bill_No,Order.Customer_Name,
-Order.Customer_Address,Order.Customer_Phone,Order.CreatedDate,Order.Gross_Amount,Order.Service_Charge,
-Order.Vat_Charge,Order.Discount,Order.NetAmount,Order.Paid_Status,Order.User_Id).ToList();
+                var result = dbContext.SP_SaveOrder(Order.Order_Id, Order.Product_Id, Order.Items_Count, Order.Product_Cost, Order.Amount, Order.Bill_No, Order.Customer_Name,
+Order.Customer_Address, Order.Customer_Phone, Order.CreatedDate, Order.Gross_Amount, Order.Service_Charge,
+Order.Vat_Charge, Order.Discount, Order.NetAmount, Order.Paid_Status, Order.User_Id).ToList();
                 if (result.Any())
                 {
                     if (result.FirstOrDefault().Result == 1)

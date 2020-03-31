@@ -5,13 +5,29 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class CommonMaster : System.Web.UI.MasterPage
+namespace InventoryStore
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class CommonMaster : System.Web.UI.MasterPage
     {
-        if (Session["User"] == null)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
+            if (Session["User"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else if (!Page.IsPostBack)
+            {
+                var user = (dynamic)Session["User"];
+                string menu_access = Convert.ToString(user.GetType().GetProperty("MenuAccess").GetValue(user, null));
+                string[] menus = menu_access.Split(',');
+                lnkBrands.Visible = menus.Contains("Brand");
+                lnkCategories.Visible = menus.Contains("Categories");
+                lnkStores.Visible = menus.Contains("Stores");
+                lnkProducts.Visible = menus.Contains("Products");
+                lnkOrders.Visible = menus.Contains("Orders");
+                lnkUsers.Visible = menus.Contains("Users");
+                lnkSuppliers.Visible = menus.Contains("Suppliers");
+            }
         }
     }
 }

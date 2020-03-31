@@ -20,10 +20,22 @@ public partial class Products : System.Web.UI.Page
            server control at run time. */
     }
     [WebMethod]
-    public static List<tbl_Products> GetProducts()
+    public static dynamic GetProducts(int productId)
     {
         InventoryBL bl = new InventoryBL();
-        return bl.GetProducts();
+        var result = bl.GetProducts(productId);
+        return result.Select(products => new
+        {
+            Product_ID = products.Product_ID,
+            Product_Name = products.Product_Name,
+            SKU = products.SKU,
+            Supplier_Id = products.Supplier_Id,
+            Product_Description = products.Product_Description,
+            Product_Quantity = products.Product_Quantity,
+            Price = products.Price,
+            ExpiryDate = products.ExpiryDate,
+            Availability = products.Availability
+        }).ToList();
     }
 
     protected void btnAddProduct_Click(object sender, EventArgs e)

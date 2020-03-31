@@ -15,10 +15,16 @@ public partial class Category : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static List<tbl_Categories> GetCategorys()
+    public static dynamic GetCategorys()
     {
         InventoryBL bl = new InventoryBL();
-        return bl.GetCategories();
+        var result = bl.GetCategories().Select(x => new
+        {
+            Category_Id = x.Category_Id,
+            Category_Name = x.Category_Name,
+            Category_Status = x.Category_Status
+        }).ToList();
+        return result;
     }
 
     [WebMethod]

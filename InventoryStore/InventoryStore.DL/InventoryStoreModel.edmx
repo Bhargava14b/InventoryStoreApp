@@ -183,6 +183,13 @@
         <Function Name="Search_Store" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="store_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderId" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_SaveBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Name" Type="varchar" Mode="In" />
@@ -606,6 +613,13 @@
             <Parameter Name="ExpiryDate" Mode="In" Type="DateTime" />
             <Parameter Name="Availability" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="SP_GetOrders">
+            <Parameter Name="OrderId" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProducts">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Search_Store_Result">
           <Property Type="Int32" Name="Store_Id" Nullable="false" />
@@ -847,6 +861,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetOrders" FunctionName="InventoryStoreModel.Store.SP_GetOrders" />
+          <FunctionImportMapping FunctionImportName="SP_GetProducts" FunctionName="InventoryStoreModel.Store.SP_GetProducts" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
