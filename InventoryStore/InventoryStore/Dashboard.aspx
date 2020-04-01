@@ -15,7 +15,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Brands</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span runat="server" id="spnBrandsCount"></span></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-bolt fa-2x text-gray-300"></i>
@@ -30,7 +30,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Categories</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span runat="server" id="spnCategoriesCount"></span></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-check fa-2x text-gray-300"></i>
@@ -47,7 +47,7 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Stores</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">15</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span runat="server" id="spnStoresCount"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,23 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Products</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span runat="server" id="spnProductsCount"></span></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-paragraph fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Orders</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span runat="server" id="spnOrderCount"></span></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-cart-arrow-down fa-2x text-gray-300"></i>

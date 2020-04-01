@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryStore.DL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,19 @@ namespace InventoryStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+                LoadDashBoard();
+        }
 
+        public void LoadDashBoard()
+        {
+            InventoryBL bl = new InventoryBL();
+            var counts = bl.GetDashboardDetails();
+            spnBrandsCount.InnerHtml = Convert.ToString(counts.GetType().GetProperty("BrandsCount").GetValue(counts, null));
+            spnCategoriesCount.InnerHtml = Convert.ToString(counts.GetType().GetProperty("CategoriesCount").GetValue(counts, null));
+            spnStoresCount.InnerHtml = Convert.ToString(counts.GetType().GetProperty("StoresCount").GetValue(counts, null));
+            spnOrderCount.InnerHtml = Convert.ToString(counts.GetType().GetProperty("OrdersCount").GetValue(counts, null));
+            spnProductsCount.InnerHtml = Convert.ToString(counts.GetType().GetProperty("ProductsCount").GetValue(counts, null));
         }
     }
 }

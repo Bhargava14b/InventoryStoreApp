@@ -87,6 +87,15 @@ namespace InventoryStore
         protected global::System.Web.UI.WebControls.HyperLink lnkSuppliers;
 
         /// <summary>
+        /// spnUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnUserName;
+
+        /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>

@@ -74,11 +74,11 @@
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
                 <asp:HyperLink runat="server" ID="lnkUsers" NavigateUrl="~/Users.aspx" CssClass="nav-link">
-                    <i class="fas fa-fw fa-paragraph"></i><span>Users</span>
+                    <i class="fas fa-fw fa-user"></i><span>Users</span>
                 </asp:HyperLink>
                 <%--<a class="nav-link" href="Users.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Users</span></a>--%>
                 <asp:HyperLink runat="server" ID="lnkSuppliers" NavigateUrl="~/Suppliers.aspx" CssClass="nav-link">
-                    <i class="fas fa-fw fa-paragraph"></i><span>Suppliers</span>
+                    <i class="fas fa-fw fa-user-friends"></i><span>Suppliers</span>
                 </asp:HyperLink>
                 <%--<a class="nav-link" href="Suppliers.aspx"><i class="fas fa-fw fa-paragraph"></i><span>Suppliers</span></a>--%>
             </li>
@@ -125,8 +125,8 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" runat="server" id="spnUserName"></span>
+                                <img class="img-profile rounded-circle" src="https://img.icons8.com/android/24/000000/user.png"/>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

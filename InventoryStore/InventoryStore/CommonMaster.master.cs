@@ -27,7 +27,11 @@ namespace InventoryStore
                 lnkOrders.Visible = menus.Contains("Orders");
                 lnkUsers.Visible = menus.Contains("Users");
                 lnkSuppliers.Visible = menus.Contains("Suppliers");
+
+                spnUserName.InnerHtml = Convert.ToString(user.GetType().GetProperty("FirstName").GetValue(user, null)) + " " +
+                    Convert.ToString(user.GetType().GetProperty("LastName").GetValue(user, null));
             }
         }
+
     }
 }

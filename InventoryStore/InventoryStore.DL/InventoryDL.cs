@@ -18,12 +18,14 @@ namespace InventoryStore.DL
                 int activeCategoriesCount = dbContext.tbl_Categories.Where(x => x.Category_Status == true).Count();
                 int activeStoresCount = dbContext.tbl_Stores.Where(x => x.Store_Status == true).Count();
                 int orderCount = dbContext.tbl_Orders.Count();
+                int productsCount = dbContext.tbl_Products.Count();
                 return new
                 {
                     BrandsCount = activeBrandsCount,
                     CategoriesCount = activeCategoriesCount,
                     StoresCount = activeStoresCount,
-                    OrdersCount = orderCount
+                    OrdersCount = orderCount,
+                    ProductsCount = productsCount
                 };
             }
             catch (Exception ex)
@@ -351,6 +353,8 @@ namespace InventoryStore.DL
                     var group = dbContext.tbl_Groups.FirstOrDefault(x => x.Group_Id == user.Group_Id);
                     return new
                     {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
                         UserId = user.User_Id,
                         UserName = user.User_Name,
                         Email = user.Email_Id,
