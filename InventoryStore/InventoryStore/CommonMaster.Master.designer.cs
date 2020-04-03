@@ -60,6 +60,15 @@ namespace InventoryStore
         protected global::System.Web.UI.WebControls.HyperLink lnkProducts;
 
         /// <summary>
+        /// lnkAddProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkAddProduct;
+
+        /// <summary>
         /// lnkOrders control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace InventoryStore
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkOrders;
+
+        /// <summary>
+        /// HyperLink2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
 
         /// <summary>
         /// lnkUsers control.

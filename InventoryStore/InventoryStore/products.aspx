@@ -74,6 +74,8 @@
                         $("#dataTable tbody").html("");
                         if (result && result.d && result.d.length > 0) {
                             for (var i = 0; i < result.d.length; i++) {
+                                alert(result.d[i].ExpiryDate);
+                                var expDate = result.d[i].ExpiryDate && result.d[i].ExpiryDate != null ? result.d[i].ExpiryDate : "";
                                 $("#dataTable tbody").append("<tr>" +
                                     "<td>" + result.d[i].Product_Name + "</td>" +
                                     //"<td>" + result.d[i].Supplier_Name + "</td>" +
@@ -82,7 +84,7 @@
                                     //"<td>" + result.d[i].Store_Name + "</td>" +
                                     "<td>" + result.d[i].Product_Quantity + "</td>" +
                                     "<td>" + result.d[i].Price + "</td>" +
-                                    "<td>" + result.d[i].ExpiryDate + "</td>" +
+                                    "<td>" + expDate + "</td>" +
                                     "<td>" + (result.d[i].Availability ? "Active" : "Inactive") + "</td>" +
                                     "<td><button class='btn btn-primary btn-Show-Save' onclick='addEditProduct(" + result.d[i].Product_ID + ");' btn-save-model='" + JSON.stringify(result.d[i]) + "'>Edit</button>&nbsp" +
                                     "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Product_ID + ");'> Delete</button ></td></tr>");

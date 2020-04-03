@@ -12,7 +12,8 @@ namespace InventoryStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["User"] = null;
+            Session["UserId"] = null;
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

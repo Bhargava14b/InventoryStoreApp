@@ -12,6 +12,22 @@
                     <form runat="server" id="fromAddOrder">
                         <div class="form-row">
                             <div class="col-md-6">
+                                <label>Customer Name</label>
+                                <asp:TextBox runat="server" required CssClass="form-control" ID="txtCustName"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                                <asp:TextBox runat="server" required CssClass="form-control" ID="txtCustPhone"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label>Address</label>
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtAddress"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
                                 <label>Product</label>
                                 <asp:DropDownList runat="server" required CssClass="form-control" AutoPostBack="true" ID="ddlProducts" OnSelectedIndexChanged="ddlProducts_SelectedIndexChanged"></asp:DropDownList>
                             </div>
@@ -39,22 +55,6 @@
                             <div class="col-md-6">
                                 <label>Amount</label>
                                 <asp:TextBox runat="server" TextMode="Number" required CssClass="form-control" ID="txtAmount" ReadOnly="true"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label>Customer Name</label>
-                                <asp:TextBox runat="server" required CssClass="form-control" ID="txtCustName"></asp:TextBox>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                                <asp:TextBox runat="server" required CssClass="form-control" ID="txtCustPhone"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <label>Address</label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtAddress"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">

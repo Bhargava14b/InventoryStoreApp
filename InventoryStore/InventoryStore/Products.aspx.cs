@@ -33,7 +33,7 @@ public partial class Products : System.Web.UI.Page
             Product_Description = products.Product_Description,
             Product_Quantity = products.Product_Quantity,
             Price = products.Price,
-            ExpiryDate = products.ExpiryDate,
+            ExpiryDate = products.ExpiryDate.GetValueOrDefault().ToShortDateString(),
             Availability = products.Availability
         }).ToList();
     }

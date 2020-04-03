@@ -32,6 +32,5 @@ namespace InventoryStore
                     Convert.ToString(user.GetType().GetProperty("LastName").GetValue(user, null));
             }
         }
-
     }
 }
