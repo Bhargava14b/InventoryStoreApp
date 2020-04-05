@@ -12,7 +12,7 @@ namespace InventoryStore.DL
         dynamic GetDashboardDetails();
 
         List<tbl_Brands> GetBrands();
-        List<tbl_Orders> GetOrders(int userId);
+        List<tbl_Orders> GetOrders(int userId, int groupId);
         List<tbl_Products> GetProducts(int productId);
 
         bool ValidateBrand(tbl_Brands brand);
@@ -61,5 +61,6 @@ namespace InventoryStore.DL
 
         bool DeleteSupplier(int id);
 
+        tbl_Orders GetOrderDetails(int orderId);
     }
 }

@@ -54,9 +54,14 @@ namespace InventoryStore.DL
             return dl.SaveUser(user);
         }
 
-        public List<tbl_Orders> GetOrders(int userId)
+        public List<tbl_Orders> GetOrders(int userId, int groupId)
         {
-            return dl.GetOrders(userId);
+            return dl.GetOrders(userId, groupId);
+        }
+
+        public tbl_Orders GetOrderDetails(int orderId)
+        {
+            return dl.GetOrderDetails(orderId);
         }
         public List<tbl_Products> GetProducts(int productId)
         {
@@ -96,7 +101,7 @@ namespace InventoryStore.DL
         {
             return dl.ValidateBrand(brand);
         }
-       
+
         public bool ValidateCategory(tbl_Categories category)
         {
             return dl.ValidateCategory(category);

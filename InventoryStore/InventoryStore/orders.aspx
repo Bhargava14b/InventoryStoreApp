@@ -20,7 +20,6 @@
                                     <th>Customer Name</th>
                                     <th>Product</th>
                                     <th>Quantity</th>
-                                    <th>Amount</th>
                                     <th>Net Amount</th>
                                     <th>Service Charge</th>
                                     <th>Vat</th>
@@ -40,10 +39,20 @@
         $(document).ready(function () {
             loadOrders();
 
-            function loadOrders() {
-                $.ajax({
-                    type: "POST",
-                    url: '<%= ResolveUrl("Orders.aspx/GetOrders") %>',
+            $("#btnAddOrder").click(function () {
+                window.location.href = '<%= ResolveUrl("AddOrder.aspx") %>';
+            });
+
+        });
+
+        function openPrintPreview(orderId) {
+            window.location.href = '<%= ResolveUrl("PrintOrder.aspx") %>' + '?OrderId=' + orderId;
+        }
+
+        function loadOrders() {
+            $.ajax({
+                type: "POST",
+                url: '<%= ResolveUrl("Orders.aspx/GetOrders") %>',
                     data: {},
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
@@ -56,12 +65,15 @@
                             for (var i = 0; i < result.d.length; i++) {
                                 $("#dataTable tbody").append("<tr>" +
                                     "<td>" + result.d[i].Customer_Name + "</td>" +
-                                    "<td>" + result.d[i].tbl_Products.Product_Name + "</td>" +
+                                    "<td>" + result.d[i].Product_Name + "</td>" +
                                     "<td>" + result.d[i].Items_Count + "</td>" +
                                     "<td>" + result.d[i].NetAmount + "</td>" +
                                     "<td>" + result.d[i].Service_Charge + "</td>" +
                                     "<td>" + result.d[i].Vat_Charge + "</td>" +
-                                    "<td><button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Order_Id + ");'>Delete</button></td></tr>");
+                                    "<td>" +
+                                    "<button class='btn btn-danger btn-Show-delete' onclick='openDeleteConfirmation(" + result.d[i].Order_Id + ");'>Delete</button>&nbsp;" +
+                                    "<button class='btn btn-primary' onclick='openPrintPreview(" + result.d[i].Order_Id + ");'>Print Invoice</button>" +
+                                    "</td></tr>");
                             }
                             $('#dataTable').DataTable();
                         }
@@ -71,13 +83,8 @@
                         //alert("We returned: " + JSON.stringify(result));
                     }
                 });
-            }
+        }
 
-            $("#btnAddOrder").click(function () {
-                window.location.href = '<%= ResolveUrl("AddOrder.aspx") %>';
-            });
-
-        });
     </script>
 </asp:Content>
 

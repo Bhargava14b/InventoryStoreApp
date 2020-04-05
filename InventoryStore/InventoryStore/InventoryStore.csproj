@@ -191,6 +191,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PrintOrder.aspx" />
     <Content Include="AddOrder.aspx" />
     <Content Include="AddProduct.aspx" />
     <Content Include="Brand.aspx" />
@@ -2045,6 +2046,13 @@
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrintOrder.aspx.cs">
+      <DependentUpon>PrintOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintOrder.aspx.designer.cs">
+      <DependentUpon>PrintOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddOrder.aspx.cs">
       <DependentUpon>AddOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

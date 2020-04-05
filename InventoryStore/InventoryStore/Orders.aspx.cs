@@ -21,13 +21,23 @@ public partial class Orders : System.Web.UI.Page
            server control at run time. */
     }
     [WebMethod]
-    public static List<tbl_Orders> GetOrders()
+    public static dynamic GetOrders()
     {
         InventoryBL bl = new InventoryBL();
         int userid = HttpContext.Current.Session["UserId"] != null ? Convert.ToInt32(HttpContext.Current.Session["UserId"]) : 0;
-        return bl.GetOrders(userid);
+        int groupId = HttpContext.Current.Session["GroupId"] != null ? Convert.ToInt32(HttpContext.Current.Session["GroupId"]) : 0;
+        return bl.GetOrders(userid, groupId).Select(x => new
+        {
+            Order_Id = x.Order_Id,
+            Customer_Name = x.Customer_Name,
+            Product_Name = x.tbl_Products != null ? x.tbl_Products.Product_Name : "",
+            Items_Count = x.Items_Count,
+            NetAmount = x.NetAmount,
+            Service_Charge = x.Service_Charge,
+            Vat_Charge = x.Vat_Charge
+        }).ToList();
     }
-    
+
     protected void btnAddOrder_Click(object sender, EventArgs e)
     {
 

@@ -8,13 +8,17 @@ using System.Web.UI.WebControls;
 
 namespace InventoryStore
 {
-    public partial class AddOrder : System.Web.UI.Page
+    public partial class PrintOrder : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["OrderId"] != null ? Request.QueryString["OrderId"].ToString() : "0";
             if (!Page.IsPostBack)
+            {
                 LoadDropdowns();
+                if (!string.IsNullOrEmpty(id))
+                    LoadOrderDetails(Convert.ToInt32(id));
+            }
         }
 
         public void LoadDropdowns()
@@ -28,6 +32,26 @@ namespace InventoryStore
                 ddlProducts.Items.Add(new ListItem(item.Product_Name, item.Product_ID.ToString()));
             }
 
+        }
+
+        public void LoadOrderDetails(int orderId)
+        {
+            InventoryBL obj = new InventoryBL();
+            var order = obj.GetOrderDetails(orderId);
+            if (order != null)
+            {
+                txtCustName.Text = order.Customer_Name;
+                txtCustPhone.Text = order.Customer_Phone;
+                txtAddress.Text = order.Customer_Address;
+                ddlProducts.SelectedItem.Value = order.Product_Id.ToString();
+                ddlNumberOfItems.SelectedItem.Value = order.Items_Count.ToString();
+                txtCost.Text = order.Product_Cost.ToString();
+                txtAmount.Text = order.Amount.ToString();
+                txtGrossAmount.Text = order.Gross_Amount.ToString();
+                txtServiceCharge.Text = order.Service_Charge.ToString();
+                txtVat.Text = order.Vat_Charge.ToString();
+                txtNetAmount.Text = order.NetAmount.ToString();
+            }
         }
 
         protected void btnSaveOrder_Click(object sender, EventArgs e)
@@ -90,7 +114,7 @@ namespace InventoryStore
                             txtGrossAmount.Text = (product.Price * numberOfItems).ToString();
                             txtServiceCharge.Text = supplier.Service_Charge_Value;
                             txtVat.Text = supplier.Vat_Charge_Value;
-                            txtNetAmount.Text = ((product.Price * numberOfItems) + Convert.ToInt32(supplier.Service_Charge_Value) + 
+                            txtNetAmount.Text = ((product.Price * numberOfItems) + Convert.ToInt32(supplier.Service_Charge_Value) +
                                 Convert.ToInt32(supplier.Vat_Charge_Value)).ToString();
                         }
                     }

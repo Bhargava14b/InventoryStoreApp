@@ -33,11 +33,15 @@ namespace InventoryStore.DL
                 throw ex;
             }
         }
-        public List<tbl_Orders> GetOrders(int userid)
+        public List<tbl_Orders> GetOrders(int userid, int groupId)
         {
             try
             {
-                return dbContext.tbl_Orders.Include("tbl_Products").Where(x => x.User_Id == userid).ToList();
+                if (groupId == 3)//customer
+                    return dbContext.tbl_Orders.Include("tbl_Products").Where(x => x.User_Id == userid).ToList();
+                else
+                    return dbContext.tbl_Orders.Include("tbl_Products").ToList();
+
                 //return dbContext.tbl_Orders.Where(x => x.User_Id == userid).Select(x => new
                 //{
                 //    OrderId = x.Order_Id,
@@ -48,6 +52,18 @@ namespace InventoryStore.DL
                 //    ServiceCharge = x.Service_Charge,
                 //    Vat = x.Vat_Charge,
                 //});
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public tbl_Orders GetOrderDetails(int orderId)
+        {
+            try
+            {
+                return dbContext.tbl_Orders.Include("tbl_Products").FirstOrDefault(x => x.Order_Id == orderId);
             }
             catch (Exception ex)
             {
@@ -358,7 +374,8 @@ namespace InventoryStore.DL
                         UserId = user.User_Id,
                         UserName = user.User_Name,
                         Email = user.Email_Id,
-                        MenuAccess = group != null ? group.Menu_Access : ""
+                        MenuAccess = group != null ? group.Menu_Access : "",
+                        GroupId = user.Group_Id
                     };
                 }
 

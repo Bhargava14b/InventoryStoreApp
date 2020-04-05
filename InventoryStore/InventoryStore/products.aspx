@@ -74,7 +74,6 @@
                         $("#dataTable tbody").html("");
                         if (result && result.d && result.d.length > 0) {
                             for (var i = 0; i < result.d.length; i++) {
-                                alert(result.d[i].ExpiryDate);
                                 var expDate = result.d[i].ExpiryDate && result.d[i].ExpiryDate != null ? result.d[i].ExpiryDate : "";
                                 $("#dataTable tbody").append("<tr>" +
                                     "<td>" + result.d[i].Product_Name + "</td>" +
